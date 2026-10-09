@@ -8,7 +8,7 @@ lastUpdated: 2026-07-02
 
 ## Overview
 
-`AppShell` is the dashboard frame: a collapsible sidebar, a sticky header (for a breadcrumb + actions), and a content region. It is compositional — `AppShell`, `AppShellSidebar`, `AppShellMain`, `AppShellHeader`, `AppShellTrigger`, `AppShellContent` — and shares collapse state through context so the trigger and sidebar stay in sync. Surfaces use the `card`/`background`/`border` roles.
+`AppShell` is the dashboard frame: a collapsible sidebar, a sticky header (for a breadcrumb + actions), and a content region. It is compositional (`AppShell`, `AppShellSidebar`, `AppShellMain`, `AppShellHeader`, `AppShellTrigger`, `AppShellContent`) and shares collapse state through context so the trigger and sidebar stay in sync. Surfaces use the `card`/`background`/`border` roles.
 
 ## Parts
 
@@ -28,9 +28,9 @@ lastUpdated: 2026-07-02
 - The sidebar should collapse to reclaim space.
 
 **Do NOT use when:**
-- The page is a marketing/content site — use a top nav + normal page layout, not an app frame.
-- You only need a single panel or card — this is a full-page frame.
-- You need multiple independent panes/split views — compose a layout directly.
+- The page is a marketing/content site. Use a top nav + normal page layout, not an app frame.
+- You only need a single panel or card. This is a full-page frame.
+- You need multiple independent panes/split views. Compose a layout directly.
 
 ## Best practices
 
@@ -53,9 +53,9 @@ lastUpdated: 2026-07-02
 
 ## Quality checklist
 
-- [x] Accessibility — banner/complementary/main landmarks, labelled trigger with aria-expanded documented
-- [x] Token-only styling — no hardcoded px/hex; `card`/`background`/`border`/`accent` roles (gate: `no-hardcoded-values.test.ts`)
-- [x] Types — `defaultCollapsed` boolean soundness asserted in `app-shell.test-d.ts`
-- [x] Tests — landmarks, trigger collapse/expand, and defaultCollapsed in `app-shell.test.tsx`; a Storybook `play` toggles the rail
-- [x] Storybook — `app-shell.stories.tsx` with a browser `play`
-- [x] Docs — this file; entry in `CATALOG.md`; parts table; for/not-for; best practices; a11y
+- [x] Accessibility: banner/complementary/main landmarks, labelled trigger with aria-expanded documented
+- [x] Token-only styling: no hardcoded px/hex; `card`/`background`/`border`/`accent` roles (gate: `no-hardcoded-values.test.ts`)
+- [x] Types: `defaultCollapsed` boolean soundness asserted in `app-shell.test-d.ts`
+- [x] Tests: landmarks, trigger collapse/expand, and defaultCollapsed in `app-shell.test.tsx`; a Storybook `play` toggles the rail
+- [x] Storybook: `app-shell.stories.tsx` with a browser `play`
+- [x] Docs: this file; entry in `CATALOG.md`; parts table; for/not-for; best practices; a11y

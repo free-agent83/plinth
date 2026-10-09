@@ -18,7 +18,7 @@ lastUpdated: 2026-07-02
 | `BreadcrumbList` | `ol` | The ordered list of crumbs. |
 | `BreadcrumbItem` | `li` | One crumb slot. |
 | `BreadcrumbLink` | `a` / Slot | A navigable ancestor crumb. `asChild` wraps a router `Link`. |
-| `BreadcrumbPage` | `span` | The current page — not a link; `aria-current="page"`. |
+| `BreadcrumbPage` | `span` | The current page: not a link; `aria-current="page"`. |
 | `BreadcrumbSeparator` | `li` (presentation) | The glyph between crumbs (defaults to a chevron). |
 
 ## For / Not for
@@ -28,9 +28,9 @@ lastUpdated: 2026-07-02
 - The path has real levels (Home › Reports › Q3), each a valid destination.
 
 **Do NOT use when:**
-- The app is flat — breadcrumbs on a one-level site are noise.
-- You are showing steps in a process — that's a stepper; steps aren't ancestors.
-- You need primary navigation — use a nav bar/sidebar; breadcrumbs are secondary wayfinding.
+- The app is flat: breadcrumbs on a one-level site are noise.
+- You are showing steps in a process. That's a stepper; steps aren't ancestors.
+- You need primary navigation. Use a nav bar/sidebar; breadcrumbs are secondary wayfinding.
 
 ## Best practices
 
@@ -49,13 +49,13 @@ lastUpdated: 2026-07-02
 - **Landmark**: the root `<nav aria-label="Breadcrumb">` is a discoverable navigation landmark.
 - **Current location**: `BreadcrumbPage` carries `aria-current="page"` so screen-reader users know which crumb is "here".
 - **Separators**: the glyph is `aria-hidden`/`role="presentation"`, so it isn't announced between links.
-- **Contrast**: crumbs sit on `muted-foreground` and lift to `foreground` on hover/current — both validated for AA.
+- **Contrast**: crumbs sit on `muted-foreground` and lift to `foreground` on hover/current. Both are validated for AA.
 
 ## Quality checklist
 
-- [x] Accessibility — nav landmark, aria-current page, hidden separators documented
-- [x] Token-only styling — no hardcoded px/hex; `muted-foreground`/`foreground` roles (gate: `no-hardcoded-values.test.ts`)
-- [x] Types — anchor `href` soundness (and `asChild`) asserted in `breadcrumb.test-d.ts`
-- [x] Tests — nav landmark + links + current-page marking in `breadcrumb.test.tsx`
-- [x] Storybook — `breadcrumb.stories.tsx` covering a three-level trail
-- [x] Docs — this file; entry in `CATALOG.md`; parts table; for/not-for; best practices; a11y
+- [x] Accessibility: nav landmark, aria-current page, hidden separators documented
+- [x] Token-only styling: no hardcoded px/hex; `muted-foreground`/`foreground` roles (gate: `no-hardcoded-values.test.ts`)
+- [x] Types: anchor `href` soundness (and `asChild`) asserted in `breadcrumb.test-d.ts`
+- [x] Tests: nav landmark + links + current-page marking in `breadcrumb.test.tsx`
+- [x] Storybook: `breadcrumb.stories.tsx` covering a three-level trail
+- [x] Docs: this file; entry in `CATALOG.md`; parts table; for/not-for; best practices; a11y

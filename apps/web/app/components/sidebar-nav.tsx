@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navItems } from "../lib/nav";
-import { cn } from "@cbd/components";
+import { cn } from "@plinth/components";
 
-// Sidebar navigation — active state derived from the current route. Uses the
+// Sidebar navigation: active state derived from the current route. Uses the
 // accent role for the active/hover surface, matching the DropdownMenu/Select
 // highlight so the whole system reads consistently.
 export function SidebarNav() {

@@ -3,11 +3,11 @@
 // equivalent aimed at undrift's rules. The lesson each one taught:
 //
 //   • Split a banned shorthand into longhand props and the pattern stops
-//     matching — so the gate must read values, not lines.
+//     matching. So the gate must read values, not lines.
 //   • Drop the quotes (`borderWidth: 1`) and a value-shaped regex misses it.
 //   • Reach for a *named* colour once hex literals are blocked.
 //   • Blend two legal tokens into a third colour that is in neither.
-//   • Invent a token that looks exactly like a real one — CSS never errors.
+//   • Invent a token that looks exactly like a real one: CSS never errors.
 //   • Invent a component name that sounds like it should exist.
 //   • Route around JSX entirely once <button> is blocked.
 //   • Take the carve-out: an escape hatch with no reason attached is the

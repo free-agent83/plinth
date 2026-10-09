@@ -52,10 +52,10 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@cbd/components";
+} from "@plinth/components";
 
 // A live example per component slug. Rendered inside the styled preview frame so
-// docs pages show real, interactive components — the dogfood.
+// docs pages show real, interactive components: the dogfood.
 const examples: Record<string, () => React.ReactNode> = {
   button: () => (
     <div className="flex flex-wrap items-center gap-3">
@@ -250,7 +250,7 @@ export function ComponentPreview({ name }: { name: string }) {
         example()
       ) : (
         <p className="text-sm text-muted-foreground">
-          Interactive preview — see the dashboard for {name} in a real screen.
+          Interactive preview. See the dashboard for {name} in a real screen.
         </p>
       )}
     </div>

@@ -4,7 +4,7 @@
 // that must never be flagged, because a gate that cries wolf gets uninstalled.
 //
 // A regex validator passed several of the cases below. The AST gate must not.
-// If a "catches" case fails, that is a hole in the gate — fix gate.mjs, never
+// If a "catches" case fails, that is a hole in the gate. Fix gate.mjs, never
 // this file.
 import { expect, test } from "vitest";
 import { readFileSync } from "node:fs";
@@ -24,40 +24,40 @@ const contract = {
 const run = (src) => gateSource(src, { contract, fileName: "t.tsx" });
 
 test.each([
-  // — colours, and the ways models get colours past a validator —
+  // Colours, and the ways models get colours past a validator
   ["hex in a template literal", "const c = `color: #ff0000`;"],
   ["hex split across style longhand", 'const s = <div style={{ borderTopColor: "#ff0000" }} />;'],
   ["uppercase 8-digit hex", 'const s = <div style={{ color: "#FF0000CC" }} />;'],
   ["rgb() function form", 'const s = <div style={{ color: "rgb(255,0,0)" }} />;'],
   ["modern space-separated rgb()", 'const s = <div style={{ color: "rgb(255 0 0 / 50%)" }} />;'],
   ["hsl() function form", 'const s = <div style={{ color: "hsl(20, 76%, 50%)" }} />;'],
-  // Once hex is blocked the next move is a keyword — it is still a colour the
+  // Once hex is blocked the next move is a keyword: it is still a colour the
   // system never chose.
   ["named CSS colour", 'const s = <div style={{ color: "crimson" }} />;'],
   ["named colour in a longhand border prop", 'const s = <div style={{ borderBottomColor: "red" }} />;'],
   // Two legal tokens blended into a third colour that is in neither.
   ["color-mix() of two real tokens", 'const s = <div style={{ color: "color-mix(in oklch, var(--color-primary) 70%, black)" }} />;'],
 
-  // — the Tailwind escape hatch —
+  // The Tailwind escape hatch
   ["arbitrary Tailwind colour", 'const s = <div className="bg-[#ff0000]" />;'],
   ["arbitrary Tailwind px", 'const s = <div className="rounded-[7px]" />;'],
   ["arbitrary value smuggled through a helper call", 'const s = <div className={cn("p-4", "rounded-[7px]")} />;'],
 
-  // — dimensions —
+  // Dimensions
   ["numeric inline dimension", "const s = <div style={{ padding: 13 }} />;"],
   ["quoted px dimension", 'const s = <div style={{ paddingLeft: "13px" }} />;'],
   ["unquoted longhand border width (an evasion a regex validator missed)", "const s = <div style={{ borderTopWidth: 1 }} />;"],
 
-  // — structure —
+  // Structure
   ["raw intrinsic element", "const s = <button>Go</button>;"],
   ["raw element routed around JSX", 'const s = React.createElement("button", null, "Go");'],
   ["foreign UI import", 'import { Button } from "@mui/material";'],
 
-  // — the two silent failures —
+  // The two silent failures
   ["token that does not exist", 'const s = <div style={{ color: "var(--color-brand-500)" }} />;'],
   ["component that does not exist", 'import { Rating } from "@acme/ds";'],
 
-  // — the escape hatch itself —
+  // The escape hatch itself
   ["bare exempt marker with no reason", 'const s = <div style={{ color: "#ff0000" }} />; // token-exempt'],
   ["exempt marker on the line above the violation", '// token-exempt: legacy\nconst s = <div style={{ color: "#ff0000" }} />;'],
 ])("catches: %s", (_label, src) => {
@@ -71,13 +71,13 @@ test.each([
   ["colour keywords that choose nothing", 'const s = <div style={{ backgroundColor: "transparent", color: "inherit" }} />;'],
   ["currentColor", 'const s = <svg style={{ fill: "currentColor" }} />;'],
   // An id reference is not a colour. Flagging `url(#fade)` would block correct
-  // SVG on every edit — the fastest way to get a gate switched off.
+  // SVG on every edit. It is the fastest way to get a gate switched off.
   ["SVG fragment reference that looks like hex", 'const s = <rect style={{ fill: "url(#fade)" }} />;'],
   ["anchor to a hex-shaped id", 'const s = <a href="#fade">jump</a>;'],
   ["unitless numeric style", "const s = <div style={{ opacity: 1, zIndex: 10 }} />;"],
   ["system component", 'import { Button } from "@acme/ds";'],
   ["type-only import of a props type", 'import type { ButtonProps } from "@acme/ds";'],
-  // Compose freely from legal primitives — this is the behaviour undrift exists
+  // Compose freely from legal primitives. This is the behaviour undrift exists
   // to make cheap, and it must never read as drift.
   [
     "a new component composed from existing ones",

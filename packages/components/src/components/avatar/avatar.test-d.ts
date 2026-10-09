@@ -6,7 +6,7 @@ import { AvatarImage } from "./avatar";
 // compile. Both blocks are evaluated by `tsc --noEmit` (no vitest runtime).
 type AvatarImageProps = React.ComponentProps<typeof AvatarImage>;
 
-// 1) @ts-expect-error — src is a string, not a number.
+// 1) @ts-expect-error: src is a string, not a number.
 // @ts-expect-error
 const bad: AvatarImageProps = { src: 123 };
 void bad;

@@ -1,12 +1,11 @@
 // Sass variable declarations as token sources.
 //
-// `$govuk-brand-colour: #1d70b8 !default;` is a design token by any honest
+// `$brand-colour: #1d70b8 !default;` is a design token by any honest
 // definition: one named place a visual value is written down. Systems built
-// on Sass (GOV.UK Frontend, Bootstrap Italia, Mozilla Protocol) declare their
-// whole palette and scale this way and emit custom properties only at build
-// time, if at all. Reading the built CSS instead of these declarations scores
-// the compiler's output rather than the authored source, and reports "0
-// authored token sources" for a system with hundreds.
+// on Sass declare their whole palette and scale this way and emit custom
+// properties only at build time, if at all. Reading the built CSS instead of
+// these declarations scores the compiler's output rather than the authored
+// source, and reports "0 authored token sources" for a system with hundreds.
 //
 // Scope, deliberately narrow: top-level `$name: value;` declarations only.
 // Variables declared inside a mixin, function or rule block are local by
@@ -21,12 +20,12 @@
 // the `var(--name)` reference scan in single-source.mjs.
 //
 // Only values that look like design values are kept. Sass variables also
-// carry build configuration (`$enable-shadows: true`, `$prefix: "bs"`,
-// `$css--font-face: true`) and counting those as tokens inflated Carbon to
-// 168 "authored token sources" on the first static index run, most of them
-// one config flag in an example app. A design value is a colour, a length,
-// a number, a font stack, a map or list, a function call, or a reference to
-// another variable. Booleans, null, and bare quoted strings are config.
+// carry build configuration (`$enable-shadows: true`, `$prefix: "bs"`) and
+// counting those as tokens inflated one system to 168 "authored token
+// sources" on an early run, most of them one config flag in an example app.
+// A design value is a colour, a length, a number, a font stack, a map or
+// list, a function call, or a reference to another variable. Booleans, null,
+// and bare quoted strings are config.
 
 const LINE_COMMENT_RE = /\/\/[^\n]*/g;
 const BLOCK_COMMENT_RE = /\/\*[\s\S]*?\*\//g;

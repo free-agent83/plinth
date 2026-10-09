@@ -5,7 +5,7 @@ import { Select as SelectPrimitive } from "radix-ui";
 import { cn } from "../../lib/utils";
 
 // Select's parts have fixed styling (no size/variant matrix), so these are plain
-// class constants merged with `cn` — no cva. (CONTRIBUTING's cva rule is for
+// class constants merged with `cn`, with no cva. (CONTRIBUTING's cva rule is for
 // variant matrices; there is none here.)
 const trigger =
   "inline-flex h-10 w-full items-center justify-between gap-2 rounded-md border border-input bg-background px-3 text-sm text-foreground outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50 disabled:cursor-not-allowed data-[placeholder]:text-muted-foreground";
@@ -16,19 +16,19 @@ const item =
   "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm text-popover-foreground outline-none data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50";
 const indicatorWrapper = "absolute left-2 inline-flex items-center justify-center";
 
-// Root — passthrough of Radix Select.Root.
+// Root: passthrough of Radix Select.Root.
 export function Select({ ...props }: React.ComponentProps<typeof SelectPrimitive.Root>) {
   return <SelectPrimitive.Root data-slot="select" {...props} />;
 }
 
-// Value — passthrough of Radix Select.Value (renders the selected label / placeholder).
+// Value: passthrough of Radix Select.Value (renders the selected label / placeholder).
 export function SelectValue({
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Value>) {
   return <SelectPrimitive.Value data-slot="select-value" {...props} />;
 }
 
-// Trigger — the styled button that opens the menu; renders its children then a chevron.
+// Trigger: the styled button that opens the menu; renders its children then a chevron.
 export function SelectTrigger({
   className,
   children,
@@ -59,7 +59,7 @@ export function SelectTrigger({
   );
 }
 
-// Content — portalled popover surface holding the scrollable viewport of items.
+// Content: portalled popover surface holding the scrollable viewport of items.
 export function SelectContent({
   className,
   children,
@@ -82,7 +82,7 @@ export function SelectContent({
   );
 }
 
-// Item — a single selectable option; requires a `value`. Shows a check when selected.
+// Item: a single selectable option; requires a `value`. Shows a check when selected.
 export function SelectItem({
   className,
   children,

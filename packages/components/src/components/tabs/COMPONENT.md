@@ -8,7 +8,7 @@ lastUpdated: 2026-07-02
 
 ## Overview
 
-`Tabs` switch between peer views in the same context without navigating — an Overview/Activity/Settings panel, say. It is compositional: `Tabs` (root), `TabsList` (the tablist), `TabsTrigger` (one tab, keyed by `value`), and `TabsContent` (the panel for a `value`). The active tab is marked by a token underline on the `primary` role.
+`Tabs` switch between peer views in the same context without navigating: an Overview/Activity/Settings panel, say. It is compositional: `Tabs` (root), `TabsList` (the tablist), `TabsTrigger` (one tab, keyed by `value`), and `TabsContent` (the panel for a `value`). The active tab is marked by a token underline on the `primary` role.
 
 ## Parts
 
@@ -26,9 +26,9 @@ lastUpdated: 2026-07-02
 - Switching should not change the URL or lose page context.
 
 **Do NOT use when:**
-- The sections are separate destinations — use navigation/links (and update the URL).
-- All content should be visible/scannable at once — use sections on the page, not tabs.
-- There are many (10+) tabs — that's navigation or a `Select`, not a tab strip.
+- The sections are separate destinations. Use navigation/links (and update the URL).
+- All content should be visible/scannable at once. Use sections on the page, not tabs.
+- There are many (10+) tabs: that's navigation or a `Select`, not a tab strip.
 
 ## Best practices
 
@@ -38,7 +38,7 @@ lastUpdated: 2026-07-02
 
 **Do: keep tab labels short and parallel.** One or two words, same grammatical form ("Overview", "Activity", "Settings").
 
-**Don't: use tabs for a sequence.** Tabs are peers, not steps — a linear flow is a stepper/wizard, where order and completion matter.
+**Don't: use tabs for a sequence.** Tabs are peers, not steps: a linear flow is a stepper/wizard, where order and completion matter.
 
 **Do: set a sensible `defaultValue`.** Open on the most useful panel; never render with no tab selected.
 
@@ -47,13 +47,13 @@ lastUpdated: 2026-07-02
 - **Roles**: `TabsList` is a `tablist`, triggers are `tab`, panels are `tabpanel`, wired with `aria-controls`/`aria-selected` by Radix.
 - **Keyboard**: arrow keys move between tabs; the focused tab activates (Radix default), and Tab moves into the panel.
 - **Focus ring**: triggers render `focus-visible:ring-2` on the `ring` role for keyboard users.
-- **Contrast**: active/inactive text uses the `foreground`/`muted-foreground` roles and the `primary` underline — all validated for AA.
+- **Contrast**: active/inactive text uses the `foreground`/`muted-foreground` roles and the `primary` underline. All are validated for AA.
 
 ## Quality checklist
 
-- [x] Accessibility — tablist/tab/tabpanel roles, arrow-key nav, focus ring documented
-- [x] Token-only styling — no hardcoded px/hex; `primary` underline + `muted-foreground` text (gate: `no-hardcoded-values.test.ts`)
-- [x] Types — `TabsTrigger` `value` requirement asserted in `tabs.test-d.ts`
-- [x] Tests — default selection + click-to-switch in `tabs.test.tsx`; a Storybook `play` mirrors the switch
-- [x] Storybook — `tabs.stories.tsx` with a browser `play`
-- [x] Docs — this file; entry in `CATALOG.md`; parts table; for/not-for; best practices; a11y
+- [x] Accessibility: tablist/tab/tabpanel roles, arrow-key nav, focus ring documented
+- [x] Token-only styling: no hardcoded px/hex; `primary` underline + `muted-foreground` text (gate: `no-hardcoded-values.test.ts`)
+- [x] Types: `TabsTrigger` `value` requirement asserted in `tabs.test-d.ts`
+- [x] Tests: default selection + click-to-switch in `tabs.test.tsx`; a Storybook `play` mirrors the switch
+- [x] Storybook: `tabs.stories.tsx` with a browser `play`
+- [x] Docs: this file; entry in `CATALOG.md`; parts table; for/not-for; best practices; a11y

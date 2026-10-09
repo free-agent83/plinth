@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { execFileSync } from "node:child_process";
+import { execFileSync, exited } from "./support/exec.mjs";
 import { mkdtempSync, mkdirSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve, dirname } from "node:path";
@@ -18,7 +18,7 @@ test("groups repeated gaps and counts frequency", () => {
   expect(items[0]).toMatchObject({ what: "DateRangePicker", count: 2 });
 });
 
-test("ranks by frequency — the prioritisation signal", () => {
+test("ranks by frequency: the prioritisation signal", () => {
   expect(buildTriage({ gaps, decisions: [] })[0].what).toBe("DateRangePicker");
 });
 
@@ -49,7 +49,7 @@ test("says so when nothing is outstanding", () => {
   expect(formatTriage([])).toMatch(/nothing to triage/i);
 });
 
-// The CLI listing. Triage is a listing, never a failure — it must exit 0 even
+// The CLI listing. Triage is a listing, never a failure: it must exit 0 even
 // when there is plenty outstanding, or agents will start avoiding it.
 const bin = resolve(dirname(fileURLToPath(import.meta.url)), "../bin/undrift.mjs");
 
@@ -84,7 +84,7 @@ const cli = (root, argv) => {
   try {
     return { code: 0, out: execFileSync(process.execPath, [bin, ...argv], { cwd: root, encoding: "utf8" }) };
   } catch (e) {
-    return { code: e.status, out: (e.stdout ?? "") + (e.stderr ?? "") };
+    return { code: exited(e), out: (e.stdout ?? "") + (e.stderr ?? "") };
   }
 };
 

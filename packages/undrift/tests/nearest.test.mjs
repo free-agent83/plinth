@@ -6,10 +6,10 @@ import { gateSource } from "../src/gate.mjs";
 
 const names = (index) => index.map((t) => t.name);
 
-describe("tokenColorIndex — only unambiguous colours", () => {
+describe("tokenColorIndex: only unambiguous colours", () => {
   // The regression. culori parses the bare string "700" as the 3-digit hex
-  // #700 (dark red), so a font-weight token used to enter the colour index —
-  // and in a system whose colours are all light-dark()/var(), it won.
+  // #700 (dark red), so a font-weight token used to enter the colour index.
+  // In a system whose colours are all light-dark()/var(), it won.
   test("a font-weight token is not indexed as a colour", () => {
     const index = tokenColorIndex({
       "--font-weight-normal": "400",
@@ -67,7 +67,7 @@ describe("tokenColorIndex — only unambiguous colours", () => {
     const index = tokenColorIndex({
       "--color-alias": "var(--color-accent)",
       // recognised as a colour, but culori can't resolve it to a comparable
-      // value — so it can't be a distance candidate either.
+      // value. It can't be a distance candidate either.
       "--color-mixed": "color-mix(in oklch, #fff 50%, #000)",
       "--color-real": "#0064E0",
     });
@@ -81,7 +81,7 @@ describe("tokenColorIndex — only unambiguous colours", () => {
 
 // `light-dark(A, B)` is valid modern CSS that culori cannot resolve, and whole
 // design systems (Basalt) declare every colour that way. Index the light-mode
-// argument — the sensible default — so those tokens become suggestable.
+// argument, which is the sensible default, so those tokens become suggestable.
 describe("light-dark() resolves to its first (light-mode) argument", () => {
   test("a light-dark value is a colour and indexes as its light argument", () => {
     expect(isColorValue("light-dark(#0064E0, #2694FE)")).toBe(true);
@@ -171,7 +171,7 @@ describe("nearestToken", () => {
 });
 
 // The system that exposed this: every Basalt colour is light-dark(), so culori
-// resolves none of them — but four font weights parsed as hex and became the
+// resolves none of them. Four font weights parsed as hex and became the
 // entire colour index.
 describe("Basalt-shaped systems (colours behind light-dark)", () => {
   const basaltShaped = `
@@ -238,7 +238,7 @@ describe("Basalt-shaped systems (colours behind light-dark)", () => {
 
 test("nearestToken never throws on a colour culori cannot parse (OKLCH regression)", () => {
   // Surfaced 2026-07-23: culori.parse THROWS on some malformed modern-syntax
-  // colours rather than returning null, and clarity-v2's OKLCH source crashed
+  // colours rather than returning null, and a production OKLCH source crashed
   // a whole scan. A colour suggestion must degrade to null, never throw.
   const index = tokenColorIndex({ "--color-error": "#e3193b" });
   for (const bad of [

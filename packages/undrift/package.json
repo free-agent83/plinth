@@ -1,7 +1,8 @@
 {
   "name": "undrift",
   "version": "0.1.0",
-  "description": "The enforcement layer for agent-ready design systems. Audits repos and gates agent-generated UI against a design system's own contract — so the rules are unskippable, not advisory.",
+  "license": "MIT",
+  "description": "The enforcement layer for agent-ready design systems. Audits repos and gates agent-generated UI against a design system's own contract. The rules are unskippable, not advisory.",
   "type": "module",
   "private": true,
   "bin": { "undrift": "./bin/undrift.mjs" },

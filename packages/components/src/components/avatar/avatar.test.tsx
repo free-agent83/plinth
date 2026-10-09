@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { expect, test } from "vitest";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 
-// jsdom never fires an <img> load, so Radix keeps showing the fallback — which
+// jsdom never fires an <img> load, so Radix keeps showing the fallback, which
 // makes this the natural state to assert here. The image-loaded path is visual.
 test("shows the fallback when the image has not loaded", () => {
   render(

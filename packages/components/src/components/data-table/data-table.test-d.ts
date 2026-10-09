@@ -6,7 +6,7 @@ import { type DataTableProps } from "./data-table";
 type Row = { id: string; amount: number };
 const columns: ColumnDef<Row>[] = [{ accessorKey: "id", header: "ID" }];
 
-// 1) @ts-expect-error — `data` is required.
+// 1) @ts-expect-error: `data` is required.
 // @ts-expect-error
 const missingData: DataTableProps<Row, unknown> = { columns };
 void missingData;

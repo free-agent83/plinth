@@ -8,7 +8,7 @@ lastUpdated: 2026-07-02
 
 ## Overview
 
-`Table` is the styled, semantic HTML table for presenting rows of data. It is compositional — `Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption` — over real `<table>` elements. Pass `numeric` to a `TableHead`/`TableCell` to right-align it and apply tabular figures so number columns line up. For sorting/filtering/pagination, wrap it with `DataTable`.
+`Table` is the styled, semantic HTML table for presenting rows of data. It is compositional (`Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`) over real `<table>` elements. Pass `numeric` to a `TableHead`/`TableCell` to right-align it and apply tabular figures so number columns line up. For sorting/filtering/pagination, wrap it with `DataTable`.
 
 ## Parts
 
@@ -26,18 +26,18 @@ lastUpdated: 2026-07-02
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `numeric` | `boolean` | `false` | On `TableHead`/`TableCell`: right-align and apply `tabular-nums` for aligned number columns. |
-| `className` | `string` | — | Appended to the computed class string. |
+| `className` | `string` | none | Appended to the computed class string. |
 
 ## For / Not for
 
 **Use when:**
-- You are presenting **tabular data** — rows with consistent columns.
+- You are presenting **tabular data**: rows with consistent columns.
 - The data is mostly static, or you'll add interactivity via `DataTable`.
 
 **Do NOT use when:**
-- You need layout, not data — use CSS grid/flex, never a table for page layout.
-- You need built-in sort/filter/pagination — reach for `DataTable`, which wraps this.
-- The content is a key/value list for one entity — a description list (`<dl>`) reads better.
+- You need layout, not data. Use CSS grid/flex, never a table for page layout.
+- You need built-in sort/filter/pagination. Reach for `DataTable`, which wraps this.
+- The content is a key/value list for one entity: a description list (`<dl>`) reads better.
 
 ## Best practices
 
@@ -56,13 +56,13 @@ lastUpdated: 2026-07-02
 - **Semantics**: real `<table>`/`<thead>`/`<th>`/`<td>` give screen-reader users row/column navigation and header association for free.
 - **Caption**: `TableCaption` provides an accessible name for the table.
 - **Alignment ≠ meaning**: `numeric` is visual; the value's meaning is in the text, so it's conveyed regardless of alignment.
-- **Contrast**: header text on `muted-foreground`, hover/selection on `muted` — all validated for AA.
+- **Contrast**: header text on `muted-foreground`, hover/selection on `muted`. All are validated for AA.
 
 ## Quality checklist
 
-- [x] Accessibility — table semantics, caption, header association documented
-- [x] Token-only styling — no hardcoded px/hex; `muted`/`muted-foreground` roles + `tabular-nums` (gate: `no-hardcoded-values.test.ts`)
-- [x] Types — `numeric` boolean soundness asserted in `table.test-d.ts`
-- [x] Tests — table semantics + numeric tabular figures in `table.test.tsx`
-- [x] Storybook — `table.stories.tsx` with status badges and a numeric column
-- [x] Docs — this file; entry in `CATALOG.md`; parts table; for/not-for; best practices; a11y
+- [x] Accessibility: table semantics, caption, header association documented
+- [x] Token-only styling: no hardcoded px/hex; `muted`/`muted-foreground` roles + `tabular-nums` (gate: `no-hardcoded-values.test.ts`)
+- [x] Types: `numeric` boolean soundness asserted in `table.test-d.ts`
+- [x] Tests: table semantics + numeric tabular figures in `table.test.tsx`
+- [x] Storybook: `table.stories.tsx` with status badges and a numeric column
+- [x] Docs: this file; entry in `CATALOG.md`; parts table; for/not-for; best practices; a11y

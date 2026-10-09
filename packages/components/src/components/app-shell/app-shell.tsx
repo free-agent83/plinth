@@ -3,7 +3,7 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 
-// Compositional: the dashboard frame — a collapsible sidebar, a sticky
+// Compositional: the dashboard frame, made of a collapsible sidebar, a sticky
 // header (breadcrumb + actions slot), and a content region. Collapse state is
 // shared through a small context so the trigger and the sidebar stay in lockstep.
 // Surfaces use the `card`/`background`/`border` roles (no dedicated sidebar role).
@@ -83,7 +83,7 @@ export function AppShellHeader({ className, ...props }: React.ComponentProps<"he
   );
 }
 
-// Trigger — toggles the sidebar; reflects state via aria-expanded.
+// Trigger: toggles the sidebar; reflects state via aria-expanded.
 export function AppShellTrigger({ className, ...props }: React.ComponentProps<"button">) {
   const { collapsed, setCollapsed } = useAppShell();
   return (

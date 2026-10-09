@@ -2,7 +2,7 @@
 //   - packages/components/CATALOG.md      → tier order + one-line description
 //   - packages/components/**/COMPONENT.md → frontmatter + full body
 // Output: content/docs/components/<slug>.mdx (+ meta.json nav). These are
-// derived artifacts (gitignored) — CATALOG.md + COMPONENT.md stay the single
+// derived artifacts (gitignored): CATALOG.md + COMPONENT.md stay the single
 // source of truth. Run in predev/prebuild.
 
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, rmSync } from "node:fs";
@@ -76,8 +76,8 @@ for (const { name, description } of catalog) {
     console.warn(`[gen-docs] no COMPONENT.md for CATALOG entry "${name}"`);
     continue;
   }
-  // Emit as .md (CommonMark) so the COMPONENT.md prose — which contains bare
-  // HTML tags like <img>/<kbd> and code fences — is rendered as-is without the
+  // Emit as .md (CommonMark) so the COMPONENT.md prose (which contains bare
+  // HTML tags like <img>/<kbd> and code fences) is rendered as-is without the
   // strict MDX/JSX parser. The live <ComponentPreview> is injected by the docs
   // page template (keyed off the slug), not embedded in the content.
   const md = `---

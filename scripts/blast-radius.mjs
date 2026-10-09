@@ -105,7 +105,7 @@ build();
 const cssBefore = readCss();
 const distBefore = snapshotDist();
 
-// 2. Save original source — this is our restore source (NOT git)
+// 2. Save original source: this is our restore source (NOT git)
 const originalSource = readFileSync(lightTokensPath, "utf8");
 
 // 3. Mutate → rebuild → diff
@@ -117,7 +117,7 @@ try {
 
   if (originalValue === newValue) {
     console.error(
-      "ERROR: primary token is already set to slate.800 — source may not have been restored from a previous run."
+      "ERROR: primary token is already set to slate.800. The source may not have been restored from a previous run."
     );
     process.exit(1);
   }
@@ -176,7 +176,7 @@ try {
     `git -C "${dsServiceRoot}" diff --quiet -- sample/packages/tokens/src`,
     { stdio: "pipe" }
   );
-  console.log("Source restored — git clean.");
+  console.log("Source restored. Git is clean.");
 } catch {
   console.error(
     "ERROR: git diff is not clean after restore! Check sample/packages/tokens/src."

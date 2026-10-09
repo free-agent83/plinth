@@ -2,7 +2,7 @@
 // the file that pins that asymmetry: normal mode lets a valid gap through,
 // --strict promotes it to a violation, and a dishonest gap fails either way.
 import { expect, test } from "vitest";
-import { execFileSync } from "node:child_process";
+import { execFileSync, exited } from "./support/exec.mjs";
 import { mkdtempSync, mkdirSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve, dirname } from "node:path";
@@ -48,7 +48,7 @@ test("exemptions still ride along on the structured result", () => {
   expect(r.exemptions).toHaveLength(1);
 });
 
-// gateFiles is the riskiest edit in this task — several callers destructure it.
+// gateFiles is the riskiest edit in this task: several callers destructure it.
 function repo() {
   const root = mkdtempSync(join(tmpdir(), "u-strict-"));
   mkdirSync(join(root, "app"), { recursive: true });
@@ -89,13 +89,13 @@ test("gateFiles under strict turns that same gap into a violation", () => {
 
 // --strict is a BOOLEAN flag. The CLI's paths filter drops the argument after a
 // flag (it assumes flags take values), so `gate --strict <path>` would silently
-// swallow the path and gate nothing — a green run that proves nothing.
+// swallow the path and gate nothing: a green run that proves nothing.
 const bin = resolve(dirname(fileURLToPath(import.meta.url)), "../bin/undrift.mjs");
 const cli = (root, argv) => {
   try {
     return { code: 0, out: execFileSync(process.execPath, [bin, ...argv], { cwd: root, encoding: "utf8" }) };
   } catch (e) {
-    return { code: e.status, out: (e.stdout ?? "") + (e.stderr ?? "") };
+    return { code: exited(e), out: (e.stdout ?? "") + (e.stderr ?? "") };
   }
 };
 

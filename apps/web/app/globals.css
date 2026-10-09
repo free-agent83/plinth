@@ -1,32 +1,35 @@
 /* The components package's stylesheet brings Tailwind, the token CSS, the
    @custom-variant dark, the @theme role mappings, and @source for the component
-   class strings — so the app inherits the whole "correct by design" token layer
+   class strings, so the app inherits the whole Plinth token layer
    from one import. */
 /* Fumadocs chrome must be imported BEFORE the components stylesheet: @import
-   rules have to precede non-@import rules, and @cbd/components/css expands to
+   rules have to precede non-@import rules, and @plinth/components/css expands to
    @theme/@source (non-imports), which would otherwise invalidate these. */
 @import "fumadocs-ui/css/neutral.css";
 @import "fumadocs-ui/css/preset.css";
-@import "@cbd/components/css";
+@import "@plinth/components/css";
 
 /* Scan the app's own markup AND the component source for utility classes.
-   The component class strings live in @cbd/components/src; Tailwind won't pick
+   The component class strings live in @plinth/components/src; Tailwind won't pick
    them up through the node_modules symlink automatically, so point at the real
    package source explicitly. */
 @source "../app";
 @source "../components";
 @source "../../../packages/components/src";
 
-/* Re-point the font-family tokens at the next/font-loaded faces (their CSS
-   variables), so `font-sans`/`font-mono` resolve to the self-hosted, no-layout-
-   shift Inter + JetBrains Mono rather than a system fallback. */
+/* Point the font face slots at the next/font-loaded faces (their CSS variables),
+   so `font-sans`/`font-mono` resolve to the self-hosted, no-layout-shift Inter +
+   JetBrains Mono rather than a system fallback. Only the FACE is set here. The
+   stack that follows it lives once, in the token source
+   (packages/tokens/src/primitive/type.tokens.json), and reaches
+   `--type-fontFamily-*` through the slot, so nothing here restates it. */
 :root {
-  --type-fontFamily-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --type-fontFamily-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+  --type-fontFace-sans: var(--font-inter);
+  --type-fontFace-mono: var(--font-jetbrains);
 }
 
 /* Dogfood: remap Fumadocs's --color-fd-* chrome variables onto our token roles,
-   in both light and dark, so the docs site is itself "correct by design". Our
+   in both light and dark, so the docs site keeps the same rules. Our
    roles already rebind under .dark via the token cascade, and re-asserting the
    map under .dark overrides Fumadocs's own dark values. Fonts follow too. */
 :root,
@@ -47,4 +50,16 @@
   --color-fd-accent: var(--color-accent);
   --color-fd-accent-foreground: var(--color-accent-foreground);
   --color-fd-ring: var(--color-ring);
+}
+
+/* Fumadocs' search dialog asks for `shadow-black/50`, and Plinth switches the
+   built-in palette off (black included, packages/components/tailwind.css), so
+   that colour no longer exists. The dialog is third-party markup, so the app
+   gives it Plinth's own shadow role instead. The selector is the Radix dialog
+   that holds the search results list (the element Fumadocs marks with
+   `data-empty`, see SearchDialogList in fumadocs-ui/dist/components/dialog/
+   search.js); the docs site's popovers are role="dialog" too and are left
+   alone. Unlayered, so it beats the layered `shadow-2xl` utility. */
+[role="dialog"]:has(> [data-empty]) {
+  box-shadow: var(--shadow-dialog);
 }

@@ -7,7 +7,7 @@ const contract = {
 };
 const run = (src) => gateSource(src, { rules: ["no-raw-colors"], contract, fileName: "t.tsx" });
 
-test("a bare marker no longer exempts — it must carry a reason", () => {
+test("a bare marker no longer exempts: it must carry a reason", () => {
   const v = run(`const a = <div style={{ color: "#ff0000" }} />; // token-exempt`);
   expect(v).toHaveLength(1);
 });

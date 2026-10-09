@@ -9,7 +9,7 @@ Before writing a screen, answer one question: what page type is this? Then build
 
 ## Where the page types are
 
-`apps/web/TEMPLATES.md`. Page templates belong to the product, not to the design system: `@cbd/components` ships the primitives every template is built from (`Page`, `Section`, `Stack`, `Grid`) and the rules they keep (`packages/components/COMPOSITION.md`), and the product records which kinds of screen it has. Each row there names the shape and a reference screen that is a working page.
+`apps/web/TEMPLATES.md`. Page templates belong to the product, not to the design system: `@plinth/components` ships the primitives every template is built from (`Page`, `Section`, `Stack`, `Grid`) and the rules they keep (`packages/components/COMPOSITION.md`), and the product records which kinds of screen it has. Each row there names the shape and a reference screen that is a working page.
 
 ## How to use it
 

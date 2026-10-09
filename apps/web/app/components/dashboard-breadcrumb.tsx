@@ -8,7 +8,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@cbd/components";
+} from "@plinth/components";
 import Link from "next/link";
 import { labelForPath } from "../lib/nav";
 

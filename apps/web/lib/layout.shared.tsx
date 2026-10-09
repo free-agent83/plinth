@@ -1,17 +1,18 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
-import { Wordmark } from "@/app/components/wordmark";
+import { PlinthWordmark } from "@/app/components/plinth-wordmark";
 import { ThemeToggle } from "@/app/components/theme-toggle";
+import { PRODUCT } from "@/app/lib/product";
 
-// Shared chrome for the Fumadocs layouts — the wordmark links back to the
-// dashboard so the docs and the app read as one product, and our own
-// ThemeToggle drives the app-wide cookie theme (Fumadocs' toggle is disabled).
+// Shared chrome for the Fumadocs layouts. The docs carry Plinth's name and link back to the example product,
+// and our own ThemeToggle drives the app-wide cookie theme (Fumadocs' toggle is disabled).
 export function baseOptions(): BaseLayoutProps {
   return {
     nav: {
-      title: <Wordmark />,
-      url: "/",
+      title: <PlinthWordmark />,
+      url: "/docs",
     },
     links: [
+      { text: PRODUCT.name, url: "/" },
       {
         type: "custom",
         secondary: true,

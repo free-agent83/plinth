@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { expect, test } from "vitest";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 
-// Tooltips open on hover/focus with a delay — jsdom can't drive that reliably,
+// Tooltips open on hover/focus with a delay, and jsdom can't drive that reliably,
 // so the real hover→show is in the Storybook `play`. Here we assert the closed
 // state (trigger present, content absent) and the forced-open state.
 test("closed by default: trigger renders, content is absent", () => {

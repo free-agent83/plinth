@@ -4,7 +4,7 @@ import { expect, test } from "vitest";
 
 // `@theme inline` makes Tailwind's OWN generated utilities (`.text-gap`,
 // `.border-gap-border`, `.bg-gap-subtle`) inline straight to
-// `var(--color-semantic-*)` at build time — proven by compiling this file
+// `var(--color-semantic-*)` at build time. This is proven by compiling this file
 // with `@tailwindcss/node` (see the task notes). Hand-written CSS does not
 // get that treatment for free: a literal `var(--color-gap-border)` reads
 // the single runtime custom property Tailwind emits once at `:root`, which

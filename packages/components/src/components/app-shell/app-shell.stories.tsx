@@ -32,7 +32,7 @@ export const Basic: Story = {
   render: () => (
     <AppShell>
       <AppShellSidebar>
-        <div className="p-4 font-semibold">Correct by Design</div>
+        <div className="p-4 font-semibold">Product</div>
         <nav className="flex flex-col gap-1 px-2 text-sm">
           <a className="rounded-md bg-accent px-2 py-1.5 text-accent-foreground" href="#">Overview</a>
           <a className="rounded-md px-2 py-1.5 text-foreground hover:bg-accent" href="#">Invoices</a>

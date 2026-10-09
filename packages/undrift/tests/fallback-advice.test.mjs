@@ -2,11 +2,15 @@ import { describe, expect, test } from "vitest";
 import { gateSource } from "../src/gate.mjs";
 
 // When there is no trustworthy nearest token, the gate falls back to generic
-// advice — and that advice used to name `bg-primary` / `text-foreground`,
+// advice. That advice used to name `bg-primary` / `text-foreground`,
 // which are THIS sample's tokens. Point undrift at another system and it was
 // instructing the agent to use utilities that do not exist there: the exact
-// "confidently wrong" failure undrift exists to prevent. The examples must
-// come from the loaded contract, or not be given at all.
+// "confidently wrong" failure undrift exists to prevent. The examples were then
+// taken from the loaded contract, the first three colour tokens in declaration
+// order. Those are real names with nothing to do with the colour (the first role
+// might be a background for a red text), so an unrelated real name is as bad as
+// an invented one. The advice now names none, as the arbitrary-colour advice
+// does. Changed 2026-10-04.
 
 const contractFor = (tokens) => ({
   system: "test-system",
@@ -34,7 +38,7 @@ const fallbackFor = (tokens, raw = FAR_COLOR) => {
 
 const namesIn = (message) => [...message.matchAll(/var\((--[\w-]+)\)/g)].map((m) => m[1]);
 
-describe("the no-nearest-match fallback names only tokens that exist", () => {
+describe("the no-nearest-match fallback names no token", () => {
   const basaltShaped = {
     "--color-accent": "light-dark(#0064E0, #2694FE)",
     "--color-text-primary": "light-dark(#0A1317, #DFE2E5)",
@@ -52,52 +56,41 @@ describe("the no-nearest-match fallback names only tokens that exist", () => {
     "--spacing-4": "16px",
   };
 
-  test("an Basalt-shaped contract yields Basalt token names, never this sample's", () => {
-    const message = fallbackFor(basaltShaped);
-    expect(message).not.toContain("bg-primary");
-    expect(message).not.toContain("text-foreground");
-    const named = namesIn(message);
-    expect(named.length).toBeGreaterThanOrEqual(2);
-    expect(named.length).toBeLessThanOrEqual(3);
-    for (const n of named) expect(Object.keys(basaltShaped)).toContain(n);
-  });
+  const shapes = {
+    "a Basalt-shaped contract": basaltShaped,
+    "the sample-shaped contract": sampleShaped,
+    "a colour-valued token with no 'color' in its name": { "--brand-ink": "#0A1317", "--brand-paper": "#ffffff" },
+    "an empty token set": {},
+    "a token set with no colours at all": { "--spacing-2": "8px", "--font-weight-bold": "700" },
+  };
 
-  test("the sample-shaped contract still reads sensibly", () => {
-    const message = fallbackFor(sampleShaped);
-    const named = namesIn(message);
-    expect(named.length).toBeGreaterThanOrEqual(2);
-    for (const n of named) expect(Object.keys(sampleShaped)).toContain(n);
-    // Semantic roles, not raw palette entries: naming a primitive would tell
-    // the agent to reach past the layer the system wants it to use.
-    for (const n of named) expect(n).not.toContain("primitive");
-  });
-
-  test("never names a non-colour token as the fix for a raw colour", () => {
-    for (const message of [fallbackFor(basaltShaped), fallbackFor(sampleShaped)]) {
-      expect(message).not.toContain("--spacing");
-      expect(message).not.toContain("--font-weight");
+  test("no shape of contract gets an example: not a token, not a utility, not this sample's", () => {
+    for (const [name, tokens] of Object.entries(shapes)) {
+      const message = fallbackFor(tokens);
+      expect(namesIn(message), name).toEqual([]);
+      expect(message, name).not.toMatch(/var\(|e\.g\.|bg-|text-|--/);
+      for (const token of Object.keys(tokens)) expect(message, name).not.toContain(token);
     }
   });
 
-  test("an empty token set invents nothing", () => {
-    const message = fallbackFor({});
-    expect(namesIn(message)).toEqual([]);
-    expect(message).not.toContain("bg-primary");
-    expect(message).not.toContain("text-foreground");
-    // Still advice, not an empty sentence.
-    expect(message.trim().length).toBeGreaterThan(20);
-    expect(message).toContain("token");
+  test("it says to use a colour role, from the system when it has a name, and to propose one if none fits", () => {
+    const message = fallbackFor(basaltShaped);
+    expect(message).toContain("Use a colour role from test-system, or its utility, instead of a raw value; if no role fits, propose one.");
+    const nameless = gateSource(`const c = "${FAR_COLOR}";`, { contract: { ...contractFor(basaltShaped), system: null } }).find((v) => v.rule === "no-raw-colors");
+    expect(nameless.message).toContain("Use a colour role from the token set, or its utility, instead of a raw value; if no role fits, propose one.");
   });
 
-  test("a token set with no colours at all invents nothing", () => {
-    const message = fallbackFor({ "--spacing-2": "8px", "--font-weight-bold": "700" });
-    expect(namesIn(message)).toEqual([]);
-    expect(message).not.toContain("--spacing");
-    expect(message).not.toContain("--font-weight");
+  test("it is still advice, not an empty sentence, and has no em dash", () => {
+    for (const tokens of Object.values(shapes)) {
+      const message = fallbackFor(tokens);
+      expect(message.trim().length).toBeGreaterThan(20);
+      expect(message).toContain("token");
+      expect(message).not.toContain("\u2014");
+    }
   });
 
-  test("a colour-valued token with no 'color' in its name can still be an example", () => {
-    const message = fallbackFor({ "--brand-ink": "#0A1317", "--brand-paper": "#ffffff" });
-    expect(namesIn(message).sort()).toEqual(["--brand-ink", "--brand-paper"]);
+  test("a colour that has a nearest token still names it", () => {
+    const [hit] = gateSource(`const c = "#0A1317";`, { contract: contractFor({ "--brand-ink": "#0A1317" }) });
+    expect(hit.message).toContain("Nearest token: --brand-ink");
   });
 });

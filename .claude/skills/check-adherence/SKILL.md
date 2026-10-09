@@ -21,4 +21,5 @@ Three legitimate resolutions, in order of preference:
 
 ## What is not a resolution
 
-A `// token-exempt` comment to make the error go away. It is a reviewed escape hatch for a value that cannot be a token, and the reason has to be true.
+- A `// token-exempt` comment to make the error go away. It is a reviewed escape hatch for a value that cannot be a token, and the reason has to be true.
+- An `ignore` entry in `undrift.config.json` for a file you wrote. Whether a file is checked is the owner's call, not its author's: a fix that mentions `ignore` is telling you to propose the entry, with its reason, to the user, and to leave `undrift.config.json` as it is.

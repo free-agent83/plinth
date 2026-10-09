@@ -1,5 +1,5 @@
 /**
- * Copied into your repo by `undrift init`. You own this file — edit it freely.
+ * Copied into your repo by `undrift init`. You own this file. Edit it freely.
  *
  * Renders where the design system genuinely cannot serve. Deliberately ugly:
  * functional enough to keep the layout honest, unmistakable enough that it can

@@ -1,5 +1,5 @@
 {
-  "name": "correct-by-design",
+  "name": "plinth",
   "private": true,
   "type": "module",
   "engines": {
@@ -10,12 +10,12 @@
     "apps/*"
   ],
   "scripts": {
-    "build:tokens": "npm -w @cbd/tokens run build",
+    "build:tokens": "npm -w @plinth/tokens run build",
     "prepare": "npm run build:tokens",
-    "test:tokens": "npm -w @cbd/tokens run test",
-    "test:components": "npm -w @cbd/components run test",
-    "test:types": "npm -w @cbd/components run test:types",
-    "test:storybook": "npm -w @cbd/components run test:storybook",
+    "test:tokens": "npm -w @plinth/tokens run test",
+    "test:components": "npm -w @plinth/components run test",
+    "test:types": "npm -w @plinth/components run test:types",
+    "test:storybook": "npm -w @plinth/components run test:storybook",
     "test:undrift": "npm -w undrift run test",
     "test": "nx run-many -t test,test:types",
     "gate": "node packages/undrift/bin/undrift.mjs gate",
@@ -23,8 +23,8 @@
     "pregate": "npm run build:tokens",
     "blast-radius": "node scripts/blast-radius.mjs",
     "predev": "npm run build:tokens",
-    "dev": "npm -w @cbd/web run dev",
-    "build:web": "npm -w @cbd/web run build"
+    "dev": "npm -w web run dev",
+    "build:web": "npm -w web run build"
   },
   "devDependencies": {
     "culori": "^4.0.0",

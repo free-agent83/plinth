@@ -26,8 +26,8 @@ const SRC = join(HERE, "../src/theme");
 const PRIMITIVES = JSON.parse(readFileSync(join(HERE, "../dist/json/tokens.json"), "utf8"));
 
 // WCAG 2.2 minimums for text against its own background.
-//   AA  4.5:1 — the legal floor almost everywhere, and the floor for body text.
-//   AAA 7:1   — what a theme offered AS a high-contrast option has to clear,
+//   AA  (4.5:1) is the legal floor almost everywhere, and the floor for body text.
+//   AAA (7:1) is what a theme offered AS a high-contrast option has to clear,
 //               otherwise it is a different palette rather than an accessible one.
 const AA = 4.5;
 const AAA = 7;

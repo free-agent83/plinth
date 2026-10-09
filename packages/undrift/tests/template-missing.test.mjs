@@ -6,7 +6,7 @@ const src = readFileSync(
   fileURLToPath(new URL("../templates/missing.tsx", import.meta.url)), "utf8"
 );
 
-test("template has no imports — it must not add dependencies", () => {
+test("template has no imports: it must not add dependencies", () => {
   expect(src).not.toMatch(/^\s*import /m);
 });
 

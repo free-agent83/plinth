@@ -40,7 +40,7 @@ function isNumeric(meta: unknown): boolean {
 }
 
 // Composes Table + Input + Button with a TanStack instance to add
-// sorting, column filtering, and pagination. Styling stays token-only — every
+// sorting, column filtering, and pagination. Styling stays token-only: every
 // part is one of our own components.
 export function DataTable<TData, TValue>({
   columns,

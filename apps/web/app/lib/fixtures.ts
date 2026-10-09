@@ -1,4 +1,4 @@
-// Typed mock data for the dashboard. No network, no auth — the demo is about the
+// Typed mock data for the dashboard. No network, no auth: the demo is about the
 // design system, not a backend.
 
 export interface Stat {

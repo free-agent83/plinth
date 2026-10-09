@@ -1,7 +1,42 @@
 @import "tailwindcss";
-@import "@cbd/tokens/css";
+@import "@plinth/tokens/css";
 @custom-variant dark (&:where(.dark, .dark *));
 @source "../src";
+/* Tailwind's built-in palette is switched off, palette by palette: the only
+   colours Plinth's code can name are its roles, mapped below, so bg-indigo-700
+   builds nothing. Not --color-*: initial, which would also wipe the docs site's
+   Fumadocs colours, declared in an earlier @theme block in the same build.
+   Black and white too: no colour is exempt (Chris, 2026-10-01). */
+@theme {
+  --color-red-*: initial;
+  --color-orange-*: initial;
+  --color-amber-*: initial;
+  --color-yellow-*: initial;
+  --color-lime-*: initial;
+  --color-green-*: initial;
+  --color-emerald-*: initial;
+  --color-teal-*: initial;
+  --color-cyan-*: initial;
+  --color-sky-*: initial;
+  --color-blue-*: initial;
+  --color-indigo-*: initial;
+  --color-violet-*: initial;
+  --color-purple-*: initial;
+  --color-fuchsia-*: initial;
+  --color-pink-*: initial;
+  --color-rose-*: initial;
+  --color-slate-*: initial;
+  --color-gray-*: initial;
+  --color-zinc-*: initial;
+  --color-neutral-*: initial;
+  --color-stone-*: initial;
+  --color-mauve-*: initial;
+  --color-olive-*: initial;
+  --color-mist-*: initial;
+  --color-taupe-*: initial;
+  --color-white: initial;
+  --color-black: initial;
+}
 @theme inline {
   --color-background: var(--color-semantic-background);
   --color-foreground: var(--color-semantic-foreground);
@@ -105,7 +140,7 @@
   body {
     font-family: var(--font-sans);
   }
-  /* The mono face carries metrics, IDs and code — align its figures so
+  /* The mono face carries metrics, IDs and code. Align its figures so
      columns of numbers don't jitter. Per-element `normal-nums` still overrides. */
   .font-mono {
     font-variant-numeric: tabular-nums;

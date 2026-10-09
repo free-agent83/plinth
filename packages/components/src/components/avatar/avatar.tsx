@@ -4,14 +4,14 @@ import * as React from "react";
 import { Avatar as AvatarPrimitive } from "radix-ui";
 import { cn } from "../../lib/utils";
 
-// Compositional, variant-less — plain class constants + `cn`, no cva. The
+// Compositional, variant-less: plain class constants + `cn`, no cva. The
 // fallback sits on the `muted` role; the shape is a tokenised full radius.
 const avatar = "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full";
 const image = "aspect-square h-full w-full object-cover";
 const fallback =
   "flex h-full w-full items-center justify-center rounded-full bg-muted text-sm font-medium text-muted-foreground";
 
-// Root — the sizing/clipping container.
+// Root: the sizing/clipping container.
 export function Avatar({
   className,
   ...props
@@ -21,7 +21,7 @@ export function Avatar({
   );
 }
 
-// Image — shown once it loads; Radix swaps to the fallback while loading/on error.
+// Image: shown once it loads; Radix swaps to the fallback while loading/on error.
 export function AvatarImage({
   className,
   ...props
@@ -31,7 +31,7 @@ export function AvatarImage({
   );
 }
 
-// Fallback — initials or an icon shown when there's no usable image.
+// Fallback: initials or an icon shown when there's no usable image.
 export function AvatarFallback({
   className,
   ...props

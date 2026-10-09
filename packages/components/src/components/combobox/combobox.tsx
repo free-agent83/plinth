@@ -18,7 +18,7 @@ export interface ComboboxOption {
 // the control had no name at all once anyone used it. Caught by the a11y gate.
 export interface ComboboxProps extends React.AriaAttributes {
   options: ComboboxOption[];
-  // Selected option value (controlled) — omit for uncontrolled use.
+  // Selected option value (controlled): omit for uncontrolled use.
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
@@ -37,7 +37,7 @@ const empty = "py-6 text-center text-sm text-muted-foreground";
 const item =
   "relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50";
 
-// A typeahead single-select over a KNOWN list — Popover for the
+// A typeahead single-select over a KNOWN list: Popover for the
 // surface, cmdk (Command) for filtering + keyboard nav. Token-only throughout.
 export function Combobox({
   options,

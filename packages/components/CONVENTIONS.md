@@ -6,7 +6,7 @@ Every convention carries its enforcement, and says so plainly when there is none
 
 Each line also says where its check runs, because the answer differs. **When the system is built** means a test that runs before this package is used, so the installed version has already passed it. **Where the product runs the gate** means a gate rule: a check on each file as it is written, in the product's own code. A product that does not run the gate does not get that check, and the rule holds there by judgement. The same test fails if a line names a test without saying when the system is built, or a gate rule without saying where the product runs the gate.
 
-The layout rules live in `COMPOSITION.md`, beside this file, each bound to a token or an export, and are not repeated here. The token layer is rendered in `FOUNDATIONS.md` in `@cbd/tokens`.
+The layout rules live in `COMPOSITION.md`, beside this file, each bound to a token or an export, and are not repeated here. The token layer is rendered in `FOUNDATIONS.md` in `@plinth/tokens`.
 
 ## Styling
 
@@ -15,6 +15,12 @@ The layout rules live in `COMPOSITION.md`, beside this file, each bound to a tok
 Colour, spacing, radius, elevation and type come from the token layer through the Tailwind utilities `tailwind.css` maps them to. A raw hex, a raw pixel value, an arbitrary utility or an inline style value is a defect, not a shortcut.
 
 **Enforced by:** when the system is built, `no-hardcoded-values.test.ts` checks this package's components. In product code, where the product runs the gate, `no-raw-colors`, `no-arbitrary-values` and `no-inline-style-values`. A `// token-exempt: <reason>` comment is the one reviewed escape hatch.
+
+### Name the role, never the palette
+
+A role says what a value is for (`primary`, `muted-foreground`, `danger`); the palette under it says which value it is (`indigo-700`). Code names the role, so a theme, a dark mode or a rebrand changes the palette without touching a screen. Tailwind's built-in palette is switched off in `tailwind.css`, so `bg-indigo-700` builds nothing.
+
+**Enforced by:** when the system is built, `no-default-palette.test.ts` checks that Tailwind's built-in palette does not compile, and `no-hardcoded-values.test.ts` checks that no component names a primitive. In product code, where the product runs the gate, `no-default-palette` and `no-primitive-tokens`, each in a profile that lists it, and the second only where the config declares the system's `primitives`.
 
 ### Light and dark are the same system
 

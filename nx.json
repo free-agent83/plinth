@@ -17,7 +17,9 @@
       "{workspaceRoot}/packages/tokens/tests/**/*",
       "{workspaceRoot}/*.md",
       "{workspaceRoot}/undrift.config.json",
-      "{workspaceRoot}/apps/web/app/**/*"
+      "{workspaceRoot}/apps/web/app/**/*",
+      "{workspaceRoot}/apps/web/lib/**/*",
+      "{workspaceRoot}/apps/web/content/**/*"
     ]
   },
   "targetDefaults": {

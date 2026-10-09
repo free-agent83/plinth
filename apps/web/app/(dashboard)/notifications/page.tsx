@@ -34,13 +34,13 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@cbd/components";
+} from "@plinth/components";
 
 // The example product's Settings page type (`apps/web/TEMPLATES.md`).
 //
 // A representative build of the frozen agent-trial task against sample/'s
 // components. This is a hand-built Arm-A reference (careful, docs-followed),
-// NOT a scored trial run — it exists so the screen shape can be reviewed
+// NOT a scored trial run. It exists so the screen shape can be reviewed
 // before the harness runs it 54 times. Every requirement in the task text is
 // implemented; the two planted gaps (a time-range + timezone control, and a
 // metered usage indicator with a threshold state) are composed from primitives

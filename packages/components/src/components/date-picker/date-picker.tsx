@@ -8,7 +8,7 @@ import { Button } from "../button/button";
 import { cn } from "../../lib/utils";
 
 // react-day-picker is styled entirely through token utilities (no default CSS
-// import, no raw px/hex) so the calendar stays "correct by design". Selected /
+// import, no raw px/hex) so the calendar stays on the system. Selected /
 // today states target the inner day button via arbitrary-variant selectors.
 const calendarClassNames = {
   months: "flex flex-col gap-4",
@@ -54,7 +54,7 @@ function Chevron({ orientation }: { orientation?: "up" | "down" | "left" | "righ
 }
 
 export interface DatePickerProps {
-  // Selected date (controlled) — omit for uncontrolled use.
+  // Selected date (controlled): omit for uncontrolled use.
   value?: Date;
   defaultValue?: Date;
   onValueChange?: (date: Date | undefined) => void;

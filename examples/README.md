@@ -51,6 +51,9 @@ enforced by its test suite, not by good intentions.
 
 ## What produced it
 
-An internal command-line instrument that reads a repository it has never seen
-before, with no configuration file and no cooperation from the codebase. It is
-not included in this repository.
+The Correct by Design assessment, an internal command-line instrument that
+reads a repository it has never seen before, with no configuration file and no
+cooperation from the codebase. It is not included in this repository.
+
+The report was generated before the instrument had its present name. Its label
+was changed by hand on 2026-10-08, and nothing else in it was.

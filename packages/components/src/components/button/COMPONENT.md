@@ -6,7 +6,7 @@ version: 0.1.0
 lastUpdated: 2026-06-30
 ---
 
-**This is the reference component — it defines what 'done' means for every other component in this system.**
+**This is the reference component: it defines what 'done' means for every other component in this system.**
 
 ## Overview
 
@@ -19,24 +19,24 @@ lastUpdated: 2026-06-30
 | `variant` | `"primary" \| "outline" \| "ghost"` | `"primary"` | Visual treatment. `primary` is filled/branded; `outline` has a visible border; `ghost` has no background until hovered. |
 | `size` | `"sm" \| "md" \| "lg"` | `"md"` | Controls height, padding, and font size. `sm` → 32 px; `md` → 40 px; `lg` → 48 px. |
 | `asChild` | `boolean` | `false` | When `true`, renders as the child element (via Radix Slot) instead of a `<button>`. Use when the trigger must be a `<a>` or other element. |
-| `onClick` | `React.MouseEventHandler<HTMLButtonElement>` | — | Standard click handler (inherited from `React.ButtonHTMLAttributes`). |
-| `disabled` | `boolean` | — | Disables the button and reduces opacity. No pointer-events. |
-| `className` | `string` | — | Appended to the computed class string (merged via `tailwind-merge`). |
-| `...rest` | `React.ButtonHTMLAttributes<HTMLButtonElement>` | — | All other native button attributes pass through (`type`, `aria-label`, `form`, etc.). |
+| `onClick` | `React.MouseEventHandler<HTMLButtonElement>` | none | Standard click handler (inherited from `React.ButtonHTMLAttributes`). |
+| `disabled` | `boolean` | none | Disables the button and reduces opacity. No pointer-events. |
+| `className` | `string` | none | Appended to the computed class string (merged via `tailwind-merge`). |
+| `...rest` | `React.ButtonHTMLAttributes<HTMLButtonElement>` | none | All other native button attributes pass through (`type`, `aria-label`, `form`, etc.). |
 
 ## For / Not for
 
 **Use Button when:**
 - The user takes a primary action: submit a form, confirm a dialog, save changes, trigger a workflow step.
-- The action is in-place — nothing navigates away and no new browser tab opens.
+- The action is in-place: nothing navigates away and no new browser tab opens.
 - You need a clearly labelled, tappable target with consistent sizing and state feedback.
 
 **Do NOT use Button when:**
-- The destination is a URL or route — use a plain `<a>` or a `Link` component. Navigation is not an action.
-- The label is purely decorative or informational — use text or a `Badge`.
-- You need an icon-only control with no visible label — use `IconButton` (a separate component that adds `aria-label` semantics).
-- You are toggling a boolean state like show/hide — prefer a semantic `<button>` with `aria-expanded` or a dedicated `Toggle` component.
-- You need it to look like a hyperlink inline in a paragraph — use a link. A button styled as a link inside prose confuses screen-reader users.
+- The destination is a URL or route. Use a plain `<a>` or a `Link` component. Navigation is not an action.
+- The label is purely decorative or informational. Use text or a `Badge`.
+- You need an icon-only control with no visible label. Use `IconButton` (a separate component that adds `aria-label` semantics).
+- You are toggling a boolean state like show/hide. Prefer a semantic `<button>` with `aria-expanded` or a dedicated `Toggle` component.
+- You need it to look like a hyperlink inline in a paragraph. Use a link. A button styled as a link inside prose confuses screen-reader users.
 
 ## Best practices
 
@@ -62,17 +62,17 @@ This preserves correct anchor semantics (right-click → "Open in new tab", keyb
 
 ## Accessibility
 
-- **Focus ring**: The Button renders `focus-visible:ring-2` using the design token ring colour. This is visible on keyboard navigation and hidden on mouse click — correct per WCAG 2.4.7.
+- **Focus ring**: The Button renders `focus-visible:ring-2` using the design token ring colour. This is visible on keyboard navigation and hidden on mouse click. This is correct per WCAG 2.4.7.
 - **Disabled semantics**: `disabled` is a native HTML attribute on `<button>`. It removes the element from the tab order and announces as "dimmed" / "unavailable" to screen readers. `pointer-events-none` reinforces this visually. Do not use `aria-disabled` instead of `disabled` unless the element must remain focusable (e.g. to show a tooltip explaining why it's disabled).
-- **`asChild` and role**: When `asChild` is used, the rendered element is the child's tag (e.g. `<a>`). The child's native role is preserved — an `<a>` has `role="link"`, not `role="button"`. If you need a non-`<button>` element to have `role="button"`, add it explicitly to the child. For most `asChild` uses (rendering an anchor), link role is correct.
+- **`asChild` and role**: When `asChild` is used, the rendered element is the child's tag (e.g. `<a>`). The child's native role is preserved: an `<a>` has `role="link"`, not `role="button"`. If you need a non-`<button>` element to have `role="button"`, add it explicitly to the child. For most `asChild` uses (rendering an anchor), link role is correct.
 - **Icon-only buttons**: If you must use Button with only an icon inside (no visible label), add `aria-label` to the Button element so the action is named for screen readers.
 - **Colour contrast**: All three variants are specified in design tokens; the token values are validated to meet WCAG AA contrast ratios. Do not override `text-*` or `bg-*` with raw colour values.
 
 ## Quality checklist
 
-- [x] Accessibility — focus ring, disabled semantics, asChild role notes documented and implemented
-- [x] Token-only styling — no hardcoded px, hex, or rgb values; all colours/spacing from design tokens (gate: `no-hardcoded-values.test.ts`)
-- [x] Types — full TypeScript interface (`ButtonProps`) extending native `ButtonHTMLAttributes`; variant types inferred from `cva`
-- [x] Tests — behavioural tests in `button.test.tsx`; type tests in `button.test-d.ts`
-- [x] Storybook — stories in `button.stories.tsx` covering all variants and sizes
-- [x] Docs — this file; entry in `CATALOG.md` index; all props documented; for/not-for; best practices; a11y notes
+- [x] Accessibility: focus ring, disabled semantics, asChild role notes documented and implemented
+- [x] Token-only styling: no hardcoded px, hex, or rgb values; all colours/spacing from design tokens (gate: `no-hardcoded-values.test.ts`)
+- [x] Types: full TypeScript interface (`ButtonProps`) extending native `ButtonHTMLAttributes`; variant types inferred from `cva`
+- [x] Tests: behavioural tests in `button.test.tsx`; type tests in `button.test-d.ts`
+- [x] Storybook: stories in `button.stories.tsx` covering all variants and sizes
+- [x] Docs: this file; entry in `CATALOG.md` index; all props documented; for/not-for; best practices; a11y notes

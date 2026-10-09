@@ -51,7 +51,7 @@ export const Basic: Story = {
     const canvas = within(canvasElement);
     // sort by amount
     await userEvent.click(canvas.getByRole("button", { name: /Amount/ }));
-    // filter to one customer — poll for the re-render rather than asserting
+    // filter to one customer: poll for the re-render rather than asserting
     // synchronously right after typing (timing-fragile across runners).
     await userEvent.type(
       canvas.getByRole("textbox", { name: "Filter customers" }),

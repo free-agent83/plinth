@@ -2,7 +2,7 @@ import * as React from "react";
 import { Slot } from "radix-ui";
 import { cn } from "../../lib/utils";
 
-// Compositional, variant-less — semantic HTML (nav > ol > li) styled with plain
+// Compositional, variant-less: semantic HTML (nav > ol > li) styled with plain
 // class constants + `cn`. No Radix primitive; breadcrumbs are just links + the
 // current page, so the value is correct semantics, not behaviour.
 const list = "flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground";
@@ -11,7 +11,7 @@ const link = "transition-colors hover:text-foreground";
 const page = "font-normal text-foreground";
 const separator = "text-muted-foreground [&>svg]:size-3.5";
 
-// Root — the <nav> landmark naming the breadcrumb trail.
+// Root: the <nav> landmark naming the breadcrumb trail.
 export function Breadcrumb({ ...props }: React.ComponentProps<"nav">) {
   return <nav data-slot="breadcrumb" aria-label="Breadcrumb" {...props} />;
 }
@@ -34,7 +34,7 @@ export function BreadcrumbLink({ className, asChild, ...props }: BreadcrumbLinkP
   return <Comp data-slot="breadcrumb-link" className={cn(link, className)} {...props} />;
 }
 
-// Page — the current (last) crumb: not a link, marked as the current location.
+// Page: the current (last) crumb. It is not a link, and it is marked as the current location.
 export function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -48,7 +48,7 @@ export function BreadcrumbPage({ className, ...props }: React.ComponentProps<"sp
   );
 }
 
-// Separator — presentational glyph between crumbs (defaults to a chevron).
+// Separator: presentational glyph between crumbs (defaults to a chevron).
 export function BreadcrumbSeparator({
   children,
   className,

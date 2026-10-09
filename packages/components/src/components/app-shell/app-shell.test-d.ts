@@ -4,7 +4,7 @@ import { type AppShellProps } from "./app-shell";
 // `defaultCollapsed` prop contract: it's a boolean, so a non-boolean must not
 // compile. Both blocks are evaluated by `tsc --noEmit` (no vitest runtime).
 
-// 1) @ts-expect-error — defaultCollapsed is a boolean, not a string.
+// 1) @ts-expect-error: defaultCollapsed is a boolean, not a string.
 // @ts-expect-error
 const bad: AppShellProps = { defaultCollapsed: "yes" };
 void bad;

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "@cbd/components";
+import { Button } from "@plinth/components";
 import { Wordmark } from "./components/wordmark";
 
 export default function NotFound() {

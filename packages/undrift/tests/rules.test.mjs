@@ -1,9 +1,9 @@
 import { describe, expect, test } from "vitest";
 import { gateSource } from "../src/gate.mjs";
 
-// Minimal contract stub — real-token values so nearest-token suggestions work.
+// Minimal contract stub with real-token values so nearest-token suggestions work.
 const contract = {
-  system: "@cbd/components",
+  system: "@plinth/components",
   exemptMarker: "token-exempt",
   tokens: {
     "--color-primitive-indigo-600": "oklch(0.4568 0.2146 277.0229)",
@@ -76,12 +76,12 @@ describe("no-raw-elements", () => {
     const v = gate(`export const x = <button onClick={f}>Go</button>;`);
     expect(rulesOf(v)).toEqual(["no-raw-elements"]);
     expect(v[0].message).toContain("<Button>");
-    expect(v[0].message).toContain("@cbd/components");
+    expect(v[0].message).toContain("@plinth/components");
   });
 
   test("<textarea> with no equivalent says propose, don't hand-roll", () => {
     const v = gate(`export const x = <textarea />;`);
-    expect(v[0].message).toContain("propose a component");
+    expect(v[0].message).toContain("Propose a component");
   });
 
   test("layout intrinsics (div/span/label/main) pass", () => {
@@ -90,7 +90,7 @@ describe("no-raw-elements", () => {
   });
 
   test("system components pass", () => {
-    const v = gate(`import { Button } from "@cbd/components";\nexport const x = <Button>Go</Button>;`);
+    const v = gate(`import { Button } from "@plinth/components";\nexport const x = <Button>Go</Button>;`);
     expect(v).toEqual([]);
   });
 });
@@ -99,7 +99,7 @@ describe("no-foreign-ui-imports", () => {
   test("foreign UI package import", () => {
     const v = gate(`import { Button } from "@mui/material";`);
     expect(rulesOf(v)).toEqual(["no-foreign-ui-imports"]);
-    expect(v[0].message).toContain("@cbd/components");
+    expect(v[0].message).toContain("@plinth/components");
   });
 
   test("bare package name match", () => {
@@ -107,7 +107,7 @@ describe("no-foreign-ui-imports", () => {
   });
 
   test("system + react imports pass", () => {
-    const v = gate(`import * as React from "react";\nimport { Button } from "@cbd/components";`);
+    const v = gate(`import * as React from "react";\nimport { Button } from "@plinth/components";`);
     expect(v).toEqual([]);
   });
 });

@@ -32,9 +32,13 @@ export const MissingToken: Story = {
   },
 };
 
+// The default render is `<Missing {...args} />`, so the args are the whole story and
+// no explicit `render` is written. The gate reads a `<Missing>` in source as a gap
+// declared here: a spread declares nothing it can check (an invalid gap), and a
+// literal `what` and `reason` would be an unresolved gap, which fails `--strict`.
+// Args say the same thing without either.
 export const ThemeProof: Story = {
   args: { what: "Rating", reason: "no rating component exists" },
-  render: (args) => <Missing {...args} />,
   play: async ({ canvasElement }) => {
     const note = canvasElement.querySelector('[data-slot="missing"]') as HTMLElement;
     const light = getComputedStyle(note).color;

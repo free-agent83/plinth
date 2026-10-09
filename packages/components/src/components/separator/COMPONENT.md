@@ -8,7 +8,7 @@ lastUpdated: 2026-07-02
 
 ## Overview
 
-`Separator` is a hairline rule on the `border` role that divides content — between sections in a menu, items in a toolbar, or blocks on a page. It supports horizontal (default) and vertical orientation and is decorative by default, so it stays out of the accessibility tree unless you mark it meaningful.
+`Separator` is a hairline rule on the `border` role that divides content: between sections in a menu, items in a toolbar, or blocks on a page. It supports horizontal (default) and vertical orientation and is decorative by default, so it stays out of the accessibility tree unless you mark it meaningful.
 
 ## Props
 
@@ -16,17 +16,17 @@ lastUpdated: 2026-07-02
 |------|------|---------|-------------|
 | `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Direction of the rule. Vertical needs a sized (e.g. flex) container. |
 | `decorative` | `boolean` | `true` | When `true`, the separator is presentational (`role="none"`). Set `false` to expose it as a semantic `separator`. |
-| `className` | `string` | — | Appended to the computed class string (merged via `tailwind-merge`). |
+| `className` | `string` | none | Appended to the computed class string (merged via `tailwind-merge`). |
 
 ## For / Not for
 
 **Use when:**
-- You need a thin visual division between related groups — menu sections, toolbar clusters, list blocks.
+- You need a thin visual division between related groups: menu sections, toolbar clusters, list blocks.
 - The division is structural, not an elevated grouping.
 
 **Do NOT use when:**
-- The two sides are genuinely distinct units that should be lifted apart — use a `Card`.
-- You only need breathing room — use spacing; a rule where whitespace would do adds visual noise.
+- The two sides are genuinely distinct units that should be lifted apart. Use a `Card`.
+- You only need breathing room. Use spacing; a rule where whitespace would do adds visual noise.
 
 ## Best practices
 
@@ -42,15 +42,15 @@ lastUpdated: 2026-07-02
 
 ## Accessibility
 
-- **Decorative default**: `role="none"`, hidden from assistive tech — correct for purely visual rules.
+- **Decorative default**: `role="none"`, hidden from assistive tech. This is correct for purely visual rules.
 - **Semantic mode**: `decorative={false}` yields `role="separator"` with `aria-orientation`, announcing a real boundary.
-- **Contrast**: the `border` role is a low-contrast hairline by design; it's a divider, not text, so AA text-contrast rules don't apply — don't darken it to "fix" contrast.
+- **Contrast**: the `border` role is a low-contrast hairline by design; it's a divider, not text, so AA text-contrast rules don't apply. Don't darken it to "fix" contrast.
 
 ## Quality checklist
 
-- [x] Accessibility — decorative vs semantic modes, orientation announcement documented
-- [x] Token-only styling — no hardcoded px/hex; `border` role, orientation via data attribute (gate: `no-hardcoded-values.test.ts`)
-- [x] Types — `orientation` soundness (closed union) asserted in `separator.test-d.ts`
-- [x] Tests — decorative/horizontal + semantic/vertical states in `separator.test.tsx`
-- [x] Storybook — `separator.stories.tsx` covering both orientations
-- [x] Docs — this file; entry in `CATALOG.md`; props; for/not-for; best practices; a11y
+- [x] Accessibility: decorative vs semantic modes, orientation announcement documented
+- [x] Token-only styling: no hardcoded px/hex; `border` role, orientation via data attribute (gate: `no-hardcoded-values.test.ts`)
+- [x] Types: `orientation` soundness (closed union) asserted in `separator.test-d.ts`
+- [x] Tests: decorative/horizontal + semantic/vertical states in `separator.test.tsx`
+- [x] Storybook: `separator.stories.tsx` covering both orientations
+- [x] Docs: this file; entry in `CATALOG.md`; props; for/not-for; best practices; a11y

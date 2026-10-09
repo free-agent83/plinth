@@ -67,7 +67,7 @@ prompt a decision and an update to this file, not an automatic merge block.
 
 ## Scope
 
-This is a sample design system shared for evaluation. It is not deployed, holds
+This is a reference design system, MIT licensed. It is not deployed, holds
 no data, has no users and no runtime services, so the classes of risk that
 matter for a production system (authentication, secrets handling, data
 exposure) do not arise. What is in scope is the supply chain of a package a

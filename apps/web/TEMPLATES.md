@@ -1,6 +1,6 @@
 # Page templates
 
-A page template is a product's decision: which kinds of screen the product has, and the shape each one takes. A design system cannot make that decision for a product it has never seen, so `@cbd/components` ships no page templates, on purpose. It ships what every template is built from (`Page`, `PageHeader`, `Section`, `Stack`, `Grid`) and the rules they keep (`packages/components/COMPOSITION.md`). This file is where a product records its own.
+A page template is a product's decision: which kinds of screen the product has, and the shape each one takes. A design system cannot make that decision for a product it has never seen, so `@plinth/components` ships no page templates, on purpose. It ships what every template is built from (`Page`, `PageHeader`, `Section`, `Stack`, `Grid`) and the rules they keep (`packages/components/COMPOSITION.md`). This file is where a product records its own.
 
 This application is an example product, a small dashboard, and the table below is its page types. A real product keeps a file like this one with its own page types in it.
 
@@ -30,7 +30,7 @@ A new screen of a listed type copies its reference screen. A screen of a type no
 
 One row: the type, its shape in the system's own primitives, and a real screen that is its reference. The reference is a working page rather than a description, because an agent copies what it can open.
 
-When the same shape repeats across enough screens to be worth extracting, extract it into this application as a component composed from the primitives. It still belongs to the product, not to `@cbd/components`.
+When the same shape repeats across enough screens to be worth extracting, extract it into this application as a component composed from the primitives. It still belongs to the product, not to `@plinth/components`.
 
 ## What checks this
 

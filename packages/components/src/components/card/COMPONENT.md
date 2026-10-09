@@ -8,7 +8,7 @@ lastUpdated: 2026-07-02
 
 ## Overview
 
-`Card` is a contained surface that groups related content — a stat tile, a settings panel, a summary block. It is compositional: `Card` wraps `CardHeader` (`CardTitle` + `CardDescription`), `CardContent`, and `CardFooter`. It renders on the `card` colour role with `shadow-card` elevation and a tokenised radius; the title is a real `<h3>` so the document outline stays correct.
+`Card` is a contained surface that groups related content: a stat tile, a settings panel, a summary block. It is compositional: `Card` wraps `CardHeader` (`CardTitle` + `CardDescription`), `CardContent`, and `CardFooter`. It renders on the `card` colour role with `shadow-card` elevation and a tokenised radius; the title is a real `<h3>` so the document outline stays correct.
 
 ## Parts
 
@@ -24,13 +24,13 @@ lastUpdated: 2026-07-02
 ## For / Not for
 
 **Use when:**
-- You need to visually group a coherent unit — a metric, a form section, a list preview — and lift it off the page.
+- You need to visually group a coherent unit (a metric, a form section, a list preview) and lift it off the page.
 - The grouping benefits from a header/body/footer rhythm.
 
 **Do NOT use when:**
-- You just need to separate content on the same plane — use spacing or a `Separator`, not an elevated surface.
-- Everything on the page is a card — blanket carding removes the hierarchy elevation is meant to create.
-- The content is a modal task — use a `Dialog`.
+- You just need to separate content on the same plane. Use spacing or a `Separator`, not an elevated surface.
+- Everything on the page is a card. Blanket carding removes the hierarchy elevation is meant to create.
+- The content is a modal task. Use a `Dialog`.
 
 ## Best practices
 
@@ -38,7 +38,7 @@ lastUpdated: 2026-07-02
 
 **Don't: nest cards inside cards.** Stacked elevation reads as noise; use a `Separator` or plain grouping inside a single card instead.
 
-**Do: use `CardTitle` for the heading.** It renders an `<h3>`, so screen-reader users get a real outline entry — don't fake a title with bold text.
+**Do: use `CardTitle` for the heading.** It renders an `<h3>`, so screen-reader users get a real outline entry. Don't fake a title with bold text.
 
 **Don't: elevate everything.** If every block is a `shadow-card`, nothing stands out. Reserve cards for content that genuinely forms a distinct unit.
 
@@ -52,9 +52,9 @@ lastUpdated: 2026-07-02
 
 ## Quality checklist
 
-- [x] Accessibility — heading semantics for the title, landmark guidance, AA contrast documented
-- [x] Token-only styling — no hardcoded px/hex; `card` surface + `shadow-card` + tokenised radius (gate: `no-hardcoded-values.test.ts`)
-- [x] Types — compositional part props typed to their native elements; `card.test-d.ts` asserts the heading prop contract
-- [x] Tests — composition + heading role + attribute forwarding in `card.test.tsx`
-- [x] Storybook — `card.stories.tsx` covering a full card and a header-only card
-- [x] Docs — this file; entry in `CATALOG.md`; parts table; for/not-for; best practices; a11y
+- [x] Accessibility: heading semantics for the title, landmark guidance, AA contrast documented
+- [x] Token-only styling: no hardcoded px/hex; `card` surface + `shadow-card` + tokenised radius (gate: `no-hardcoded-values.test.ts`)
+- [x] Types: compositional part props typed to their native elements; `card.test-d.ts` asserts the heading prop contract
+- [x] Tests: composition + heading role + attribute forwarding in `card.test.tsx`
+- [x] Storybook: `card.stories.tsx` covering a full card and a header-only card
+- [x] Docs: this file; entry in `CATALOG.md`; parts table; for/not-for; best practices; a11y

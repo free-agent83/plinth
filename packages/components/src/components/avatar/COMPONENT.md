@@ -8,7 +8,7 @@ lastUpdated: 2026-07-02
 
 ## Overview
 
-`Avatar` shows a user or entity's image, falling back to initials (or an icon) when no image is available or while it loads. It is compositional — `Avatar`, `AvatarImage`, `AvatarFallback` — and Radix handles the load/error swap so the fallback never flashes once a real image is ready.
+`Avatar` shows a user or entity's image, falling back to initials (or an icon) when no image is available or while it loads. It is compositional (`Avatar`, `AvatarImage`, `AvatarFallback`) and Radix handles the load/error swap so the fallback never flashes once a real image is ready.
 
 ## Parts
 
@@ -21,12 +21,12 @@ lastUpdated: 2026-07-02
 ## For / Not for
 
 **Use when:**
-- You are representing a person or entity by picture — a comment author, an assignee, a member list.
+- You are representing a person or entity by picture: a comment author, an assignee, a member list.
 - You need a graceful fallback when the image is missing or slow.
 
 **Do NOT use when:**
-- The graphic is a brand/product logo — use an `<img>` or icon; an avatar implies a person/entity identity.
-- You need a status dot only — that's a `Badge`/indicator, not an avatar.
+- The graphic is a brand/product logo. Use an `<img>` or icon; an avatar implies a person/entity identity.
+- You need a status dot only. That's a `Badge`/indicator, not an avatar.
 
 ## Best practices
 
@@ -36,7 +36,7 @@ lastUpdated: 2026-07-02
 
 **Do: keep fallbacks to one or two initials.** More than two characters overflows the circle; derive them consistently (first + last initial).
 
-**Don't: put critical, text-only information in an avatar.** It's a small, clipped circle — a number or word will be cramped and clipped. Use a `Badge`.
+**Don't: put critical, text-only information in an avatar.** It's a small, clipped circle. A number or word will be cramped and clipped. Use a `Badge`.
 
 **Do: add a ring against the background when overlapping avatars.** In a stacked group, `ring-2 ring-background` separates the circles cleanly.
 
@@ -48,9 +48,9 @@ lastUpdated: 2026-07-02
 
 ## Quality checklist
 
-- [x] Accessibility — image alt guidance, meaningful fallback text, AA contrast documented
-- [x] Token-only styling — no hardcoded px/hex; `muted` fallback surface + tokenised radius (gate: `no-hardcoded-values.test.ts`)
-- [x] Types — compositional prop types forwarded from Radix; `avatar.test-d.ts` asserts the <img> `src` contract
-- [x] Tests — fallback rendering + root className forwarding in `avatar.test.tsx`
-- [x] Storybook — `avatar.stories.tsx` with image, initials, and a stacked group
-- [x] Docs — this file; entry in `CATALOG.md`; parts table; for/not-for; best practices; a11y
+- [x] Accessibility: image alt guidance, meaningful fallback text, AA contrast documented
+- [x] Token-only styling: no hardcoded px/hex; `muted` fallback surface + tokenised radius (gate: `no-hardcoded-values.test.ts`)
+- [x] Types: compositional prop types forwarded from Radix; `avatar.test-d.ts` asserts the <img> `src` contract
+- [x] Tests: fallback rendering + root className forwarding in `avatar.test.tsx`
+- [x] Storybook: `avatar.stories.tsx` with image, initials, and a stacked group
+- [x] Docs: this file; entry in `CATALOG.md`; parts table; for/not-for; best practices; a11y

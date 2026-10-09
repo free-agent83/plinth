@@ -2,9 +2,9 @@ import { createMDX } from "fumadocs-mdx/next";
 
 /** @type {import('next').NextConfig} */
 const config = {
-  // @cbd/components ships TypeScript source (no build step), so Next transpiles
+  // @plinth/components ships TypeScript source (no build step), so Next transpiles
   // it. Relative internal imports mean no alias config is needed.
-  transpilePackages: ["@cbd/components", "@cbd/tokens"],
+  transpilePackages: ["@plinth/components", "@plinth/tokens"],
 };
 
 const withMDX = createMDX();

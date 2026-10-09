@@ -4,7 +4,7 @@ import { type BreadcrumbLinkProps } from "./breadcrumb";
 // contract carried by BreadcrumbLink: `href` is a string, so a numeric href must
 // not compile. Both blocks are evaluated by `tsc --noEmit` (no vitest runtime).
 
-// 1) @ts-expect-error — href is a string, not a number.
+// 1) @ts-expect-error: href is a string, not a number.
 // @ts-expect-error
 const bad: BreadcrumbLinkProps = { href: 123 };
 void bad;

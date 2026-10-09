@@ -52,6 +52,6 @@ test("className and other div props land on an outer wrapper, not on the contrac
   expect(note.className).not.toContain("col-span-2");
 });
 
-test("is exported from the package barrel, so a product that installs only @cbd/components can render it", () => {
+test("is exported from the package barrel, so a product that installs only @plinth/components can render it", () => {
   expect(BarrelMissing).toBe(Missing);
 });

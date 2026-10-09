@@ -32,6 +32,26 @@ function toVarName(path) {
 }
 
 /**
+ * A font family stack as CSS, with the FIRST family behind an overridable slot:
+ * `--type-fontFamily-sans: var(--type-fontFace-sans, Inter), ui-sans-serif, ...`.
+ * A product that loads its own face (next/font, a self-hosted file) sets the slot,
+ * `--type-fontFace-sans: var(--font-inter)`, and never restates the stack, so the
+ * fallbacks after the first family live once, in the token source. Without the
+ * slot the product had to re-declare the whole token and copy them.
+ *
+ * Only a font family token gets a slot: the slot is named by swapping `fontFamily`
+ * for `fontFace` in the token's own path, so it can never be the token itself.
+ * Any other array value is joined plainly.
+ */
+export function fontStack(path, families) {
+  const at = path.indexOf("fontFamily");
+  if (at === -1 || families.length === 0) return families.join(", ");
+  const slot = toVarName(path.map((part, i) => (i === at ? "fontFace" : part)));
+  const [first, ...fallbacks] = families;
+  return [`var(${slot}, ${first})`, ...fallbacks].join(", ");
+}
+
+/**
  * Flatten a PRIMITIVES token tree to { "--var-name": "literal-value" }.
  * Colours (object $value) → dtcgToCss(); dimensions/type/numbers → raw string.
  */
@@ -43,8 +63,8 @@ export function flattenPrimitives(tree) {
       // OKLCH colour object
       result[toVarName(path)] = dtcgToCss(v);
     } else if (Array.isArray(v)) {
-      // Font family array — join as comma-separated string
-      result[toVarName(path)] = v.join(", ");
+      // Font family array: a comma-separated stack, first family behind a slot
+      result[toVarName(path)] = fontStack(path, v);
     } else {
       // Dimension string or number
       result[toVarName(path)] = String(v);

@@ -4,7 +4,7 @@ import { type TableCellProps } from "./table";
 // `numeric` prop: it's a boolean toggle, so a non-boolean must not compile.
 // Both blocks are evaluated by `tsc --noEmit` (no vitest runtime needed).
 
-// 1) @ts-expect-error — numeric is a boolean, not a string.
+// 1) @ts-expect-error: numeric is a boolean, not a string.
 // @ts-expect-error
 const bad: TableCellProps = { numeric: "yes" };
 void bad;

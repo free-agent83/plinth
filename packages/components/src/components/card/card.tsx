@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 
-// Card is a variant-less compositional surface — plain class constants merged
+// Card is a variant-less compositional surface: plain class constants merged
 // with `cn`, no cva (see CONTRIBUTING). It sits on the `card` role with
 // `shadow-card` elevation and a tokenised radius.
 const card = "rounded-lg border border-border bg-card text-card-foreground shadow-card";
@@ -19,7 +19,7 @@ export function CardHeader({ className, ...props }: React.ComponentProps<"div">)
   return <div data-slot="card-header" className={cn(header, className)} {...props} />;
 }
 
-// A card's title is a heading — render an <h3> so the document outline is correct.
+// A card's title is a heading, so it renders an <h3> and the document outline stays correct.
 export function CardTitle({ className, ...props }: React.ComponentProps<"h3">) {
   return <h3 data-slot="card-title" className={cn(title, className)} {...props} />;
 }

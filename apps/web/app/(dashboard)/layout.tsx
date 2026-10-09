@@ -7,13 +7,13 @@ import {
   AppShellMain,
   AppShellSidebar,
   AppShellTrigger,
-} from "@cbd/components";
+} from "@plinth/components";
 import { SidebarNav } from "../components/sidebar-nav";
 import { Wordmark } from "../components/wordmark";
 import { DashboardBreadcrumb } from "../components/dashboard-breadcrumb";
 import { ThemeToggle } from "../components/theme-toggle";
 
-// The dashboard frame — dogfoods AppShell (collapsible sidebar + sticky header)
+// The dashboard frame: dogfoods AppShell (collapsible sidebar + sticky header)
 // and the token cascade via the live theme toggle. Children are the screens.
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (

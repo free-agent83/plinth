@@ -17,7 +17,7 @@ export default async function Page(props: { params: Promise<{ slug?: string[] }>
   if (!page) notFound();
 
   const MDX = page.data.body;
-  // Component pages live at /docs/components/<slug> — open them with a live,
+  // Component pages live at /docs/components/<slug>. Open them with a live,
   // interactive example of the real component.
   const slug = params.slug;
   const componentSlug =

@@ -9,8 +9,6 @@
     "declaration": true,
     "baseUrl": ".",
     "paths": {
-      "@cbd/tokens": ["packages/tokens/dist/js/tokens.js"],
-      "@cbd/components": ["packages/components/src/index.ts"],
       "@/*": ["packages/components/src/*"]
     }
   }

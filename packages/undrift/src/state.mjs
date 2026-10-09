@@ -19,7 +19,7 @@ export function loadState(root) {
   }
 }
 
-/** Upsert by `what` — one standing decision per subject. */
+/** Upsert by `what`. There is one standing decision per subject. */
 export function recordDecision(root, decision) {
   const state = loadState(root);
   state.decisions = state.decisions.filter((d) => d.what !== decision.what);

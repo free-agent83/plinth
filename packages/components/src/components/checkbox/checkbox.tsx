@@ -28,7 +28,7 @@ export function Checkbox({ className, size, ...props }: CheckboxProps) {
       {...props}
     >
       <CheckboxPrimitive.Indicator className="group flex items-center justify-center text-current">
-        {/* Checkmark — shown when fully checked. */}
+        {/* Checkmark: shown when fully checked. */}
         <svg
           className="hidden h-3.5 w-3.5 group-data-[state=checked]:block"
           viewBox="0 0 24 24"
@@ -41,7 +41,7 @@ export function Checkbox({ className, size, ...props }: CheckboxProps) {
         >
           <path d="M20 6 9 17l-5-5" />
         </svg>
-        {/* Dash — shown for the indeterminate ("mixed") state, so it reads
+        {/* Dash: shown for the indeterminate ("mixed") state, so it reads
             differently from a full check. */}
         <svg
           className="hidden h-3.5 w-3.5 group-data-[state=indeterminate]:block"

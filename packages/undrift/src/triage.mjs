@@ -1,7 +1,7 @@
 // Triage is on-request only (spec P5). This module turns raw gaps into a ranked,
 // decidable list; the agent performs the chosen resolution in chat and calls
-// recordDecision() from state.mjs. Frequency ranking is the point — it's demand
-// data you cannot get any other way.
+// recordDecision() from state.mjs. Frequency ranking is the point.
+// It is demand data you cannot get any other way.
 
 export const RESOLUTIONS = {
   component: ["replace-with", "add-to-system", "keep-gap"],
@@ -33,7 +33,7 @@ export function buildTriage({ gaps = [], decisions = [] }) {
 }
 
 export function formatTriage(items) {
-  if (items.length === 0) return "Nothing to triage — no unresolved gaps.";
+  if (items.length === 0) return "Nothing to triage. There are no unresolved gaps.";
   return items
     .map((it, i) =>
       [

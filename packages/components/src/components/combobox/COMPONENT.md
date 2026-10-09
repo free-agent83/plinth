@@ -8,21 +8,21 @@ lastUpdated: 2026-07-02
 
 ## Overview
 
-`Combobox` is a single-select with **typeahead** over a known list — pick one framework, one assignee, one country by typing to filter. It composes `Popover` (the surface) with [cmdk](https://cmdk.paco.me) (`Command`) for filtering and keyboard navigation, behind a simple `options` + `value` API. Use it when a plain `Select` list is too long to scan.
+`Combobox` is a single-select with **typeahead** over a known list: pick one framework, one assignee, one country by typing to filter. It composes `Popover` (the surface) with [cmdk](https://cmdk.paco.me) (`Command`) for filtering and keyboard navigation, behind a simple `options` + `value` API. Use it when a plain `Select` list is too long to scan.
 
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `options` | `{ value: string; label: string; disabled?: boolean }[]` | — | The selectable options. |
-| `value` | `string` | — | Selected option value (controlled). |
+| `options` | `{ value: string; label: string; disabled?: boolean }[]` | none | The selectable options. |
+| `value` | `string` | none | Selected option value (controlled). |
 | `defaultValue` | `string` | `""` | Initial value (uncontrolled). |
-| `onValueChange` | `(value: string) => void` | — | Fires when the selection changes. |
+| `onValueChange` | `(value: string) => void` | none | Fires when the selection changes. |
 | `placeholder` | `string` | `"Select…"` | Trigger text when nothing is selected. |
 | `searchPlaceholder` | `string` | `"Search…"` | Placeholder for the filter input. |
 | `emptyText` | `string` | `"No results."` | Shown when the filter matches nothing. |
-| `disabled` | `boolean` | — | Disables the trigger. |
-| `className` | `string` | — | Applied to the trigger button. |
+| `disabled` | `boolean` | none | Disables the trigger. |
+| `className` | `string` | none | Applied to the trigger button. |
 
 ## For / Not for
 
@@ -31,10 +31,10 @@ lastUpdated: 2026-07-02
 - The options are finite and available client-side.
 
 **Do NOT use when:**
-- The list is short (≤ ~7) — a plain `Select` is simpler and needs no typing.
-- You need multiple selection — that's a multi-select/tags input.
-- The user creates free-form values or the set is unbounded/server-searched — use an async autocomplete pattern.
-- You are listing **actions** — use `DropdownMenu`.
+- The list is short (≤ ~7). A plain `Select` is simpler and needs no typing.
+- You need multiple selection: that's a multi-select/tags input.
+- The user creates free-form values or the set is unbounded/server-searched. Use an async autocomplete pattern.
+- You are listing **actions**. Use `DropdownMenu`.
 
 ## Best practices
 
@@ -57,9 +57,9 @@ lastUpdated: 2026-07-02
 
 ## Quality checklist
 
-- [x] Accessibility — combobox role, listbox semantics, keyboard nav, empty state documented
-- [x] Token-only styling — composes Popover/Button; `accent` highlight, `border`, `muted-foreground` (gate: `no-hardcoded-values.test.ts`)
-- [x] Types — required `options` soundness asserted in `combobox.test-d.ts`
-- [x] Tests — closed-state placeholder/selected/disabled in `combobox.test.tsx`; real open→type→select in the Storybook `play`
-- [x] Storybook — `combobox.stories.tsx` with a browser `play`
-- [x] Docs — this file; entry in `CATALOG.md`; props; for/not-for; best practices; a11y
+- [x] Accessibility: combobox role, listbox semantics, keyboard nav, empty state documented
+- [x] Token-only styling: composes Popover/Button; `accent` highlight, `border`, `muted-foreground` (gate: `no-hardcoded-values.test.ts`)
+- [x] Types: required `options` soundness asserted in `combobox.test-d.ts`
+- [x] Tests: closed-state placeholder/selected/disabled in `combobox.test.tsx`; real open→type→select in the Storybook `play`
+- [x] Storybook: `combobox.stories.tsx` with a browser `play`
+- [x] Docs: this file; entry in `CATALOG.md`; props; for/not-for; best practices; a11y

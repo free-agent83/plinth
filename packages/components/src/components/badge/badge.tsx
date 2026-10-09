@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 // Each status variant pairs a `-subtle` surface with its solid status colour for
-// text — a soft, enterprise-legible badge that rebinds correctly in dark (the
+// text, which makes a soft, enterprise-legible badge that rebinds correctly in dark (the
 // subtle surface flips to a deep tint, the text to a lighter status tone).
 const badge = cva(
   "inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium",

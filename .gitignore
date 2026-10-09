@@ -5,7 +5,7 @@ storybook-static
 *.log
 .DS_Store
 
-# undrift hook scratch state (attempt counters). Decisions are NOT scratch —
+# undrift hook scratch state (attempt counters). Decisions are NOT scratch:
 # undrift.decisions.json is committed on purpose.
 .undrift/
 

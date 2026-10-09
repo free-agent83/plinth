@@ -14,7 +14,7 @@ import {
   SectionHeader,
   SectionTitle,
   Stack,
-} from "@cbd/components";
+} from "@plinth/components";
 import { StatCard } from "../components/stat-card";
 import { RevenueChart } from "../components/revenue-chart";
 import { ActivityList } from "../components/activity-list";

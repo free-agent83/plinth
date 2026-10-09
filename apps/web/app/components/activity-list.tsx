@@ -8,10 +8,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@cbd/components";
+} from "@plinth/components";
 import { recentActivity } from "../lib/fixtures";
 
-// Recent activity — Avatar + Table + Badge, numeric amounts with tabular figures.
+// Recent activity: Avatar + Table + Badge, numeric amounts with tabular figures.
 // Server component (all presentational).
 export function ActivityList() {
   return (

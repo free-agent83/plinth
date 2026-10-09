@@ -1,5 +1,5 @@
 {
-  "name": "@cbd/tokens", "version": "0.1.0", "type": "module",
+  "name": "@plinth/tokens", "version": "0.1.0", "license": "MIT", "type": "module",
   "main": "dist/js/tokens.js", "types": "dist/js/tokens.d.ts",
   "exports": { ".": "./dist/js/tokens.js", "./css": "./dist/web/tokens.css" },
   "scripts": { "build": "node build.mjs", "test": "vitest run" },

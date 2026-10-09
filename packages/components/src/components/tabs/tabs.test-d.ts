@@ -6,7 +6,7 @@ import { TabsTrigger } from "./tabs";
 // so a trigger without one must not compile. Evaluated by `tsc --noEmit`.
 type TabsTriggerProps = React.ComponentProps<typeof TabsTrigger>;
 
-// 1) @ts-expect-error — a trigger without a `value` is not a legal prop set.
+// 1) @ts-expect-error: a trigger without a `value` is not a legal prop set.
 // @ts-expect-error
 const missingValue: TabsTriggerProps = { children: "Overview" };
 void missingValue;

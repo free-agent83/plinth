@@ -1,8 +1,8 @@
-import { Badge, Card, CardContent, CardHeader, CardTitle } from "@cbd/components";
+import { Badge, Card, CardContent, CardHeader, CardTitle } from "@plinth/components";
 import type { Stat } from "../lib/fixtures";
 
 // A single metric tile: label, a tabular-figure value, and a Badge delta. Server
-// component — Card/Badge are presentational.
+// component: Card/Badge are presentational.
 export function StatCard({ stat }: { stat: Stat }) {
   return (
     <Card>

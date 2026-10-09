@@ -1,6 +1,6 @@
 // A realistic screen written the way the system intends: composition from
-// @cbd/components, token-backed utilities only, no invented values.
-// This file is the gate's positive control — it must produce ZERO violations.
+// @plinth/components, token-backed utilities only, no invented values.
+// This file is the gate's positive control: it must produce ZERO violations.
 import * as React from "react";
 import {
   Button,
@@ -11,7 +11,7 @@ import {
   Badge,
   Separator,
   Tabs,
-} from "@cbd/components";
+} from "@plinth/components";
 
 export function SettingsScreen() {
   return (

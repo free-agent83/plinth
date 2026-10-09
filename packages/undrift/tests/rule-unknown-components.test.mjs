@@ -47,7 +47,7 @@ test("does not fire when the catalog is not known-complete", () => {
 
 // The catalog is built by resolvePackageComponents, which deliberately collects
 // PascalCase names ONLY. Hooks and lowercase utilities are legitimate package
-// exports that can never appear in it — so checking them is guaranteed to be a
+// exports that can never appear in it. Checking them is guaranteed to be a
 // false positive, and a false positive here BLOCKS the edit and tells the agent
 // a real export doesn't exist. Caught by a smoke test against a real system.
 test("ignores a camelCase hook import (hooks are never in the catalog)", () => {

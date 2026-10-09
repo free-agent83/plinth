@@ -8,27 +8,27 @@ lastUpdated: 2026-07-02
 
 ## Overview
 
-`DataTable` wraps `Table` with [TanStack Table](https://tanstack.com/table) to add **sorting**, **column filtering**, and **pagination** behind a small `columns` + `data` API. You describe columns declaratively (including a `cell` renderer for badges/formatting and `meta: { numeric: true }` for aligned numbers); the component wires the toolbar filter, sortable headers, and pager from our own `Input`/`Button`/`Table` — so it stays token-only.
+`DataTable` wraps `Table` with [TanStack Table](https://tanstack.com/table) to add **sorting**, **column filtering**, and **pagination** behind a small `columns` + `data` API. You describe columns declaratively (including a `cell` renderer for badges/formatting and `meta: { numeric: true }` for aligned numbers); the component wires the toolbar filter, sortable headers, and pager from our own `Input`/`Button`/`Table`. This keeps it token-only.
 
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `columns` | `ColumnDef<TData, TValue>[]` | — | TanStack column definitions. Add `meta: { numeric: true }` to right-align + tabular-figure a column. |
-| `data` | `TData[]` | — | The rows. |
-| `filterColumn` | `string` | — | `accessorKey` of the column the toolbar text filter targets. Omit for no filter. |
+| `columns` | `ColumnDef<TData, TValue>[]` | none | TanStack column definitions. Add `meta: { numeric: true }` to right-align + tabular-figure a column. |
+| `data` | `TData[]` | none | The rows. |
+| `filterColumn` | `string` | none | `accessorKey` of the column the toolbar text filter targets. Omit for no filter. |
 | `filterPlaceholder` | `string` | `"Filter…"` | Placeholder + accessible name for the filter input. |
 
 ## For / Not for
 
 **Use when:**
-- You have a list users need to **sort, filter, and page through** — invoices, users, products.
+- You have a list users need to **sort, filter, and page through**: invoices, users, products.
 - The dataset is known/client-held (or you page it in yourself) and columns are well-defined.
 
 **Do NOT use when:**
-- You just need to display static rows — use `Table` directly; DataTable's machinery is overkill.
-- You need server-driven, virtualized, or infinitely-scrolling data at scale — reach for a purpose-built data grid.
-- The "table" is really a key/value view of one record — use a description list.
+- You just need to display static rows. Use `Table` directly; DataTable's machinery is overkill.
+- You need server-driven, virtualized, or infinitely-scrolling data at scale. Reach for a purpose-built data grid.
+- The "table" is really a key/value view of one record. Use a description list.
 
 ## Best practices
 
@@ -52,9 +52,9 @@ lastUpdated: 2026-07-02
 
 ## Quality checklist
 
-- [x] Accessibility — table semantics, aria-sort headers, labelled filter, disabled pager states documented
-- [x] Token-only styling — composes Input/Button/Table; no raw px/hex (gate: `no-hardcoded-values.test.ts`)
-- [x] Types — generic `columns`+`data` contract; required-`data` soundness asserted in `data-table.test-d.ts`
-- [x] Tests — sort, filter, and empty-state behaviour in `data-table.test.tsx`; a Storybook `play` mirrors sort+filter
-- [x] Storybook — `data-table.stories.tsx` with a browser `play`
-- [x] Docs — this file; entry in `CATALOG.md`; props; for/not-for; best practices; a11y
+- [x] Accessibility: table semantics, aria-sort headers, labelled filter, disabled pager states documented
+- [x] Token-only styling: composes Input/Button/Table; no raw px/hex (gate: `no-hardcoded-values.test.ts`)
+- [x] Types: generic `columns`+`data` contract; required-`data` soundness asserted in `data-table.test-d.ts`
+- [x] Tests: sort, filter, and empty-state behaviour in `data-table.test.tsx`; a Storybook `play` mirrors sort+filter
+- [x] Storybook: `data-table.stories.tsx` with a browser `play`
+- [x] Docs: this file; entry in `CATALOG.md`; props; for/not-for; best practices; a11y

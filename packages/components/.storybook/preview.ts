@@ -1,4 +1,4 @@
-// Self-hosted fonts — the family names ("Inter", "JetBrains Mono") match the
+// Self-hosted fonts: the family names ("Inter", "JetBrains Mono") match the
 // type tokens, so stories render in the real faces rather than a fallback.
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";

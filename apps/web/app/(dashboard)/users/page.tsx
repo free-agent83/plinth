@@ -26,7 +26,7 @@ import {
   SectionHeader,
   SectionTitle,
   Stack,
-} from "@cbd/components";
+} from "@plinth/components";
 import { roles, users, type User } from "../../lib/users";
 
 // The example product's List page type (`apps/web/TEMPLATES.md`): a count, the

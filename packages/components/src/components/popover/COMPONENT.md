@@ -8,7 +8,7 @@ lastUpdated: 2026-07-02
 
 ## Overview
 
-`Popover` is a portalled floating surface anchored to a trigger — the low-level primitive that richer overlays (Combobox, Date Picker) build on. It is compositional: you assemble it from `Popover`, `PopoverTrigger`, `PopoverContent` (and optionally `PopoverAnchor`, `PopoverClose`). The content sits on the `popover` colour role with `shadow-popover` elevation and is dismissed by outside-click or Escape.
+`Popover` is a portalled floating surface anchored to a trigger: the low-level primitive that richer overlays (Combobox, Date Picker) build on. It is compositional: you assemble it from `Popover`, `PopoverTrigger`, `PopoverContent` (and optionally `PopoverAnchor`, `PopoverClose`). The content sits on the `popover` colour role with `shadow-popover` elevation and is dismissed by outside-click or Escape.
 
 ## Parts
 
@@ -23,14 +23,14 @@ lastUpdated: 2026-07-02
 ## For / Not for
 
 **Use when:**
-- You need transient, contextual content anchored to a control — a filter panel, a form snippet, extra detail on demand.
+- You need transient, contextual content anchored to a control: a filter panel, a form snippet, extra detail on demand.
 - The content is interactive (inputs, buttons) and should trap nothing but dismiss on outside-click/Escape.
 
 **Do NOT use when:**
-- The content is a short, non-interactive text hint — use `Tooltip` (hover/focus, no focus management).
-- You are presenting a list of actions/commands — use `DropdownMenu`.
-- The content is a blocking, full-attention task — use a modal `Dialog`.
-- You are choosing one option from a known list — use `Select` (or `Combobox` for typeahead).
+- The content is a short, non-interactive text hint. Use `Tooltip` (hover/focus, no focus management).
+- You are presenting a list of actions/commands. Use `DropdownMenu`.
+- The content is a blocking, full-attention task. Use a modal `Dialog`.
+- You are choosing one option from a known list. Use `Select` (or `Combobox` for typeahead).
 
 ## Best practices
 
@@ -53,9 +53,9 @@ lastUpdated: 2026-07-02
 
 ## Quality checklist
 
-- [x] Accessibility — focus return, Escape/outside-click dismiss, aria-expanded/controls documented
-- [x] Token-only styling — no hardcoded px/hex; `popover` surface + `shadow-popover` (gate: `no-hardcoded-values.test.ts`)
-- [x] Types — compositional prop types forwarded from Radix; `align` soundness asserted in `popover.test-d.ts`
-- [x] Tests — closed + `defaultOpen` states in `popover.test.tsx`; real open interaction in the Storybook `play`
-- [x] Storybook — `popover.stories.tsx` with a browser `play`
-- [x] Docs — this file; entry in `CATALOG.md`; parts table; for/not-for; best practices; a11y
+- [x] Accessibility: focus return, Escape/outside-click dismiss, aria-expanded/controls documented
+- [x] Token-only styling: no hardcoded px/hex; `popover` surface + `shadow-popover` (gate: `no-hardcoded-values.test.ts`)
+- [x] Types: compositional prop types forwarded from Radix; `align` soundness asserted in `popover.test-d.ts`
+- [x] Tests: closed + `defaultOpen` states in `popover.test.tsx`; real open interaction in the Storybook `play`
+- [x] Storybook: `popover.stories.tsx` with a browser `play`
+- [x] Docs: this file; entry in `CATALOG.md`; parts table; for/not-for; best practices; a11y

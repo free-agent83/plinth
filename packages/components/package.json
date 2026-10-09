@@ -1,6 +1,7 @@
 {
-  "name": "@cbd/components",
+  "name": "@plinth/components",
   "version": "0.1.0",
+  "license": "MIT",
   "type": "module",
   "private": true,
   "files": [
@@ -23,7 +24,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@cbd/tokens": "*",
+    "@plinth/tokens": "*",
     "@tailwindcss/vite": "^4",
     "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
@@ -43,6 +44,7 @@
     "@storybook/addon-a11y": "^8",
     "@storybook/react-vite": "^8",
     "@storybook/test-runner": "^0.21.0",
+    "@tailwindcss/node": "^4",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",

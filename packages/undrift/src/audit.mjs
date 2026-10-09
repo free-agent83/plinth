@@ -42,7 +42,7 @@ export function runAudit(contract) {
   const dirs = componentDirs(contract);
   const metrics = [];
 
-  // 1 — illegal states unrepresentable (type-level tests per component)
+  // 1. Illegal states unrepresentable (type-level tests per component)
   {
     const withTypeTests = dirs.filter((d) => fg.sync("*.test-d.ts", { cwd: d.path }).length > 0);
     const pass = dirs.length > 0 && withTypeTests.length === dirs.length;
@@ -55,7 +55,7 @@ export function runAudit(contract) {
     });
   }
 
-  // 2 — hardcoded-value delta (the gate, run over every configured profile)
+  // 2. Hardcoded-value delta (the gate, run over every configured profile)
   {
     let total = 0;
     const detail = [];
@@ -74,7 +74,7 @@ export function runAudit(contract) {
     });
   }
 
-  // 3 — single source of truth (token pipeline present, themes generated)
+  // 3. Single source of truth (token pipeline present, themes generated)
   {
     const tokenCount = Object.keys(contract.tokens).length;
     let themes = 0;
@@ -94,7 +94,7 @@ export function runAudit(contract) {
     });
   }
 
-  // 4 — docs coverage (every component fully documented, agent-readably)
+  // 4. Docs coverage (every component fully documented, agent-readably)
   {
     const missing = dirs.filter((d) => !existsSync(join(d.path, "COMPONENT.md")));
     const pass = dirs.length > 0 && missing.length === 0;
@@ -107,7 +107,7 @@ export function runAudit(contract) {
     });
   }
 
-  // 5 — zero drift (catalog ↔ component dirs stay in lockstep)
+  // 5. Zero drift (catalog ↔ component dirs stay in lockstep)
   {
     const catalogNames = new Set(contract.catalog.map((c) => c.name));
     const dirNames = new Map(
@@ -123,7 +123,7 @@ export function runAudit(contract) {
       title: "Zero drift (CATALOG.md ↔ components in lockstep)",
       pass,
       summary: pass
-        ? `${catalogNames.size} catalog entries, ${dirNames.size} documented components — fully in sync`
+        ? `${catalogNames.size} catalog entries, ${dirNames.size} documented components, and they are fully in sync`
         : `${notInCatalog.length + notOnDisk.length} drift(s) between catalog and disk`,
       detail: [
         ...notInCatalog.map((n) => `on disk but not in CATALOG.md: ${n}`),

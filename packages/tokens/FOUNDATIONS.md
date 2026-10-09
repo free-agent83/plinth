@@ -162,6 +162,8 @@ Every foreground pairs with a surface, and light and dark are symmetric: the sam
 
 ## Type
 
+Each font family token puts its first family behind an overridable slot, `--type-fontFace-<name>`, and the source value below is what fills it by default. A product that loads its own face points the slot at it (`--type-fontFace-sans: var(--font-inter)`) and never restates the stack, so the fallbacks live once, in `src/primitive/type.tokens.json`.
+
 | Token | Value |
 |---|---|
 | `type.fontFamily.sans` | Inter, ui-sans-serif, system-ui, sans-serif |

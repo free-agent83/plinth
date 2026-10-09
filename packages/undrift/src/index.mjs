@@ -1,7 +1,7 @@
 export { loadContract, findConfig, parseCatalog } from "./contract.mjs";
 export {
   gateSource, gateSourceWithGaps, gateFiles, gatePaths, gateProfile,
-  countDeclarations, compliance, ALL_RULES,
+  countDeclarations, compliance, ALL_RULES, DEFAULT_RULES,
 } from "./gate.mjs";
 export { runAudit } from "./audit.mjs";
 export { tokenColorIndex, nearestToken } from "./nearest.mjs";

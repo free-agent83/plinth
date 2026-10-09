@@ -1,10 +1,15 @@
 {
   "$schema": "./packages/undrift/schema.json",
-  "system": "@cbd/components",
+  "system": "@plinth/components",
   "tokens": "packages/tokens/dist/json/tokens.json",
   "tokensCss": [
     "packages/tokens/dist/web/tokens.css",
     "packages/components/tailwind.css"
+  ],
+  "primitives": [
+    "--color-primitive-*",
+    "--dimension-*",
+    "--shadow-primitive-*"
   ],
   "catalog": "packages/components/CATALOG.md",
   "componentsRoot": "packages/components/src/components",
@@ -33,19 +38,38 @@
     "grommet",
     "evergreen-ui"
   ],
+  "ignore": {
+    "packages/components/src/components/**/*.test.tsx": "component tests: each renders its component with literal props and content to assert behaviour, and none is product UI",
+    "packages/components/tests/a11y.test.tsx": "the accessibility gate: it renders every component story under axe, so it is a test harness and not product UI",
+    "packages/undrift/templates/missing.tsx": "the Missing placeholder that undrift init copies into an adopter's repo: it hardcodes the magenta hatching on purpose, and init excludes the copy from its own rules",
+    "packages/undrift/tests/**": "gate test fixtures: violations planted on purpose, evasion attempts, a clean control, and extracts of other design systems, all kept exactly as they are",
+    "apps/web/app/globals.css": "wiring only: imports, @source paths, the two font face slots pointed at the next/font variables, and the Fumadocs colour variables mapped onto token roles. The docs search dialog's box-shadow is set to the --shadow-dialog role, because Plinth's black is switched off. It declares no font stack, no colour and no length of its own",
+    "packages/components/tailwind.css": "token wiring plus everything it sets of its own, each written out here in full, property and value together. The bg-gap-hatch utility is the gap marker's stripe pattern: background-image: repeating-linear-gradient(45deg, color-mix(in oklch, --theme(--color-gap-border) 10%, transparent) 0 7px, transparent 7px 14px). The .font-mono rule aligns figures: font-variant-numeric: tabular-nums. The grid-auto-* utilities, one for each rung of the grid minimum, set grid-template-columns: repeat(auto-fit, minmax(var(--layout-grid-min-*), 1fr)). The body base rule sets font-family: var(--font-sans). The one at-rule that is not wiring is @custom-variant dark (&:where(.dark, .dark *)). The @theme block that switches off Tailwind's built-in colours sets each of these to initial: --color-red-*: initial, --color-orange-*: initial, --color-amber-*: initial, --color-yellow-*: initial, --color-lime-*: initial, --color-green-*: initial, --color-emerald-*: initial, --color-teal-*: initial, --color-cyan-*: initial, --color-sky-*: initial, --color-blue-*: initial, --color-indigo-*: initial, --color-violet-*: initial, --color-purple-*: initial, --color-fuchsia-*: initial, --color-pink-*: initial, --color-rose-*: initial, --color-slate-*: initial, --color-gray-*: initial, --color-zinc-*: initial, --color-neutral-*: initial, --color-stone-*: initial, --color-mauve-*: initial, --color-olive-*: initial, --color-mist-*: initial, --color-taupe-*: initial, --color-white: initial, --color-black: initial. Everything else is imports, @source, @layer, @utility and @theme mappings onto existing variables"
+  },
   "profiles": {
     "system": {
-      "include": ["packages/components/src/components/**/!(*.stories|*.test|*.test-d).tsx"],
-      "rules": ["no-raw-colors", "no-arbitrary-values", "no-foreign-ui-imports"]
+      "include": [
+        "packages/components/src/components/**/!(*.stories|*.test|*.test-d).tsx",
+        "packages/components/src/components/**/*.stories.tsx"
+      ],
+      "rules": [
+        "no-raw-colors",
+        "no-arbitrary-values",
+        "no-foreign-ui-imports",
+        "no-default-palette",
+        "no-primitive-tokens"
+      ]
     },
     "app": {
-      "include": ["apps/web/app/**/*.{ts,tsx}"],
+      "include": ["apps/web/app/**/*.{ts,tsx}", "apps/web/lib/**/*.{ts,tsx}"],
       "rules": [
         "no-raw-colors",
         "no-arbitrary-values",
         "no-raw-elements",
         "no-foreign-ui-imports",
-        "no-inline-style-values"
+        "no-inline-style-values",
+        "no-default-palette",
+        "no-primitive-tokens"
       ]
     }
   }

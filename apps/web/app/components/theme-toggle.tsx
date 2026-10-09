@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Button } from "@cbd/components";
+import { Button } from "@plinth/components";
 
 // Toggles `.dark` on <html>, dogfooding the token cascade (every role rebinds),
 // and persists the choice to a cookie so the server applies it on the next
@@ -16,7 +16,7 @@ export function ThemeToggle() {
   const toggle = () => {
     const next = !document.documentElement.classList.contains("dark");
     document.documentElement.classList.toggle("dark", next);
-    document.cookie = `cbd-theme=${next ? "dark" : "light"};path=/;max-age=31536000;samesite=lax`;
+    document.cookie = `theme=${next ? "dark" : "light"};path=/;max-age=31536000;samesite=lax`;
     setDark(next);
   };
 

@@ -7,7 +7,7 @@ import { CardTitle } from "./card";
 // Both blocks are evaluated by `tsc --noEmit` (no vitest runtime needed).
 type CardTitleProps = React.ComponentProps<typeof CardTitle>;
 
-// 1) @ts-expect-error — className is typed as string, not number.
+// 1) @ts-expect-error: className is typed as string, not number.
 // @ts-expect-error
 const bad: CardTitleProps = { className: 42 };
 void bad;

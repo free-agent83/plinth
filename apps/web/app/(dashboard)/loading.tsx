@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, Grid, Page, Stack } from "@cbd/components";
+import { Card, CardContent, CardHeader, Grid, Page, Stack } from "@plinth/components";
 
 // Skeleton shown while a dashboard route segment streams in. Uses the muted role
 // and a pulse, no spinner. Built inside `Page` like every screen, so the layout

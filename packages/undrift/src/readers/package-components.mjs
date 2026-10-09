@@ -1,10 +1,10 @@
 // packages/undrift/src/readers/package-components.mjs
 // Extracts component names from a package's .d.ts files. Any npm-published TS
-// design system ships these, so this is format-generic — no per-system code.
+// design system ships these, so this is format-generic, with no per-system code.
 //
 // Two entry points:
 //   readComponentNames(dts)        pure string parse (one file)
-//   resolvePackageComponents(path) follows `export *` across files — USE THIS
+//   resolvePackageComponents(path) follows `export *` across files: USE THIS
 //
 // The transitive walk is not optional: a root entry that says
 // `export * from './Table'` hides TableRow/TableCell/TableHeader, and treating
@@ -18,7 +18,7 @@ const DEFAULT_AS = /default\s+as\s+([A-Za-z0-9_]+)/;
 
 const isComponent = (name) => /^[A-Z][A-Za-z0-9]*$/.test(name);
 
-// Strip `export type { … }` up front — far more robust than lookbehind.
+// Strip `export type { … }` up front. It is far more robust than lookbehind.
 const stripTypeExports = (dts) =>
   dts.replace(/export\s+type\s*\{[^}]*\}[^;\n]*/g, "");
 
@@ -32,7 +32,7 @@ export function readComponentNames(dts) {
   const src = stripTypeExports(dts);
   const names = new Set();
 
-  // `export * from './Button'` — the directory/file name is itself a component
+  // `export * from './Button'`: the directory/file name is itself a component
   for (const m of src.matchAll(EXPORT_STAR_MOD)) {
     const leaf = m[1].split("/").pop();
     if (isComponent(leaf)) names.add(leaf);

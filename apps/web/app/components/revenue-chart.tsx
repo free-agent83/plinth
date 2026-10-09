@@ -13,7 +13,7 @@ import { revenueSeries } from "../lib/fixtures";
 
 // Recharts wired to the chart-* token roles (via CSS vars), so the series colour
 // rebinds with the theme like everything else. Axis/grid use the muted + border
-// roles. Client component — Recharts renders in the browser.
+// roles. Client component: Recharts renders in the browser.
 export function RevenueChart() {
   return (
     <ResponsiveContainer width="100%" height={260}>
@@ -55,7 +55,7 @@ export function RevenueChart() {
             clip-path from width 0. That animation doesn't run under React 19, so the
             clip stays collapsed and the (correctly drawn) series is clipped away
             entirely. Disabling the animation renders it immediately. Revisit when
-            recharts 3.x — which supports React 19 — is adopted. */}
+            recharts 3.x (which supports React 19) is adopted. */}
         <Area
           type="monotone"
           dataKey="revenue"

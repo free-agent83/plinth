@@ -1,19 +1,19 @@
 {
-  "name": "@cbd/web",
+  "name": "web",
   "private": true,
   "type": "module",
   "scripts": {
     "postinstall": "fumadocs-mdx",
     "gen:docs": "node scripts/gen-docs.mjs",
-    "predev": "npm -w @cbd/tokens run build && npm run gen:docs",
+    "predev": "npm -w @plinth/tokens run build && npm run gen:docs",
     "dev": "next dev -p 5200",
-    "prebuild": "npm -w @cbd/tokens run build && npm run gen:docs",
+    "prebuild": "npm -w @plinth/tokens run build && npm run gen:docs",
     "build": "next build",
     "start": "next start -p 5200"
   },
   "dependencies": {
-    "@cbd/components": "*",
-    "@cbd/tokens": "*",
+    "@plinth/components": "*",
+    "@plinth/tokens": "*",
     "@tanstack/react-table": "^8.21.3",
     "@types/mdx": "^2.0.14",
     "date-fns": "^4.4.0",

@@ -1,5 +1,5 @@
 // Token sources are ADDITIVE, not either/or. A real design system declares
-// tokens in more than one place — the sample ships a DTCG JSON build *and* a
+// tokens in more than one place: the sample ships a DTCG JSON build *and* a
 // Tailwind v4 `@theme inline` alias layer, and both are load-bearing. Treating
 // them as alternatives makes real tokens look non-existent to no-unknown-tokens.
 import { expect, test } from "vitest";
@@ -79,6 +79,6 @@ test("the sample's real config resolves its Tailwind @theme alias tokens", () =>
   ]) {
     expect(c.tokens, `${name} must be visible to the contract`).toHaveProperty(name);
   }
-  // and the DTCG primitives are still there — neither source shadows the other
+  // and the DTCG primitives are still there: neither source shadows the other
   expect(c.tokens).toHaveProperty("--color-primitive-white");
 });

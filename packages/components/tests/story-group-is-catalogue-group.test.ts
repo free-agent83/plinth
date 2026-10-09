@@ -5,7 +5,7 @@ import { expect, test } from "vitest";
 
 // Grouping was declared in two places and reconciled in none: the section
 // headings of CATALOG.md (which the docs generator turns into nav order) and
-// the `title:` prefix of every Storybook story. clarity-v2, audited 2026-09-08,
+// the `title:` prefix of every Storybook story. A production system, audited 2026-09-08,
 // had 19 of 63 components in a different group depending on which surface a
 // reader opened. This makes a disagreement a build failure.
 const root = process.cwd();

@@ -1,5 +1,5 @@
 // Gaps are declared absences: the agent could not serve a need from the system
-// and said so instead of improvising. Gaps are a SUCCESS state — they never
+// and said so instead of improvising. Gaps are a SUCCESS state. They never
 // fail the dev loop (see spec P3). But they must be honest, so every one is
 // verified against the contract: you cannot declare a gap for something that
 // already exists.
@@ -30,11 +30,11 @@ export function verifyGap(gap, contract) {
     const kind = gap.what.startsWith("--") ? "Token" : "Component";
     return {
       valid: false,
-      message: `${kind} ${gap.what} exists in ${contract.system ?? "the design system"} — use it rather than declaring a gap.`,
+      message: `${kind} ${gap.what} exists in ${contract.system ?? "the design system"}. Use it rather than declaring a gap.`,
     };
   }
   if (gap.reason !== undefined && !String(gap.reason).trim()) {
-    return { valid: false, message: `Gap "${gap.what}" needs a reason — an unexplained gap is indistinguishable from laziness.` };
+    return { valid: false, message: `Gap "${gap.what}" needs a reason. An unexplained gap is indistinguishable from laziness.` };
   }
   return { valid: true };
 }
@@ -69,6 +69,7 @@ export function findGaps(source, { fileName = "input.tsx", contract }) {
         reason: attrText(node, "reason") ?? "",
         file: fileName,
         line: line + 1,
+        endLine: sf.getLineAndCharacterOfPosition(node.getEnd()).line + 1,
       };
       gaps.push({ ...gap, ...verifyGap(gap, contract) });
     }

@@ -35,7 +35,7 @@ function resolveToken(tree, path, visiting) {
   // Already resolved (plain value, object, or previously resolved ref)
   const raw = node?.$value;
 
-  // Not a ref-style string — nothing to resolve
+  // Not a ref-style string: nothing to resolve
   if (typeof raw !== "string") return;
 
   const match = raw.match(REF_RE);
@@ -61,7 +61,7 @@ function resolveToken(tree, path, visiting) {
     resolveToken(tree, refPath, visiting);
   }
 
-  // Now target.$value is resolved — copy it
+  // Now target.$value is resolved, so copy it
   node.$value = targetNode.$value;
 
   visiting.delete(path);
